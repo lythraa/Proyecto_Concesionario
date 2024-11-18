@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -51,26 +53,39 @@ public class InicioSesionController {
     @FXML
     void iniciarSesionAccion(ActionEvent event) {
         Empleado empleado = concesionario.verificarCredenciales(usuarioCampo.getText(), contraseñaCampo.getText());
-        
-    if (empleado != null) {
-        if (empleado instanceof Administrador) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
-            try {
-            Parent root = loader.load();
-            Stage stage = (Stage) 
-            iniciarSesionBoton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Vista administrador");
-            stage.show();    
-        } catch (IOException e) {
-            e.printStackTrace();  // Manejar el error si no se puede cargar la vista
+
+        if (empleado != null) {
+            if (empleado instanceof Administrador) {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = (Stage) iniciarSesionBoton.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Vista administrador");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (empleado instanceof Empleado) {
+                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
+                try {
+                    Parent root = loader1.load();
+                    Stage stage = (Stage) iniciarSesionBoton.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Vista empleado");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        }else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Alertaaaaa");
+            alert.setContentText("Empleado no encontrado");
+            alert.showAndWait();
         }
-        } else {
-            // Acción para el caso en que el empleado es un Empleado normal
-            // Ejemplo: mostrar vista de empleado
-        }
-    } else {
-    }
     }
 
     @FXML

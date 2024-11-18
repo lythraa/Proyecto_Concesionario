@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="833.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="833.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.controllers.RegistrarAdministradorController">
    <children>
        <ImageView fitHeight="833.0" fitWidth="1265.0">
            <image>
@@ -36,8 +39,6 @@
          <children>
 
             <TextField fx:id="emailField" layoutX="50.0" layoutY="360.0" prefWidth="300" promptText="Correo electrónico" visible="false" />
-
-            <Button layoutX="50.0" layoutY="400.0" onAction="#enviarCorreoDeRecuperacion" prefWidth="300" text="Enviar recuperación" visible="false" />
             <VBox layoutX="18.0" layoutY="40.0" prefHeight="385.0" prefWidth="371.0" spacing="20.0">
                <children>
                   <Text fill="black" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar Administrador">
@@ -57,7 +58,7 @@
                </padding>
             </VBox>
 
-                        <Button fx:id="registrarBoton" layoutX="50.0" layoutY="451.0" prefWidth="300" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Registrarse" />
+                        <Button fx:id="registrarBoton" layoutX="50.0" layoutY="451.0" onAction="#registrarseAccion" prefWidth="300" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Registrarse" />
          </children>
       </Pane>
    </children>

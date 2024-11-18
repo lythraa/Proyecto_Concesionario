@@ -37,9 +37,9 @@
                   <Font name="Candara" size="36.0" />
                </font>
             </Text>
-            <Button layoutX="396.0" layoutY="587.0" onAction="#handleAñadirCliente" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-font-size: 16px;" text="Buscar" />
-            <Button layoutX="422.0" layoutY="442.0" onAction="#handleAñadirCliente" style="-fx-background-color: #D9534F; -fx-text-fill: white; -fx-font-size: 16px;" text="Eliminar" />
-            <TextField layoutX="63.0" layoutY="590.0" prefHeight="31.0" prefWidth="271.0" promptText="Nombre o ID" />
+            <Button fx:id="buscarBoton" layoutX="396.0" layoutY="587.0" onAction="#buscarAccion" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-font-size: 16px;" text="Buscar" />
+            <Button fx:id="eliminarBoton" layoutX="422.0" layoutY="442.0" onAction="#eliminarAccion" style="-fx-background-color: #D9534F; -fx-text-fill: white; -fx-font-size: 16px;" text="Eliminar" />
+            <TextField fx:id="busquedaNombreOrIDCampo" layoutX="63.0" layoutY="590.0" prefHeight="31.0" prefWidth="271.0" promptText="Nombre o ID" />
             <Text fill="WHITE" layoutX="29.0" layoutY="537.0" text="Busqueda de Clientes">
                <font>
                   <Font name="Candara" size="36.0" />
@@ -47,11 +47,11 @@
             </Text>
       
                                                     <!-- Tabla de Vehículos -->
-                <TableView fx:id="tablaVehiculos" layoutX="30.0" layoutY="78.0" prefHeight="341.0" prefWidth="472.0" style="-fx-background-color: rgba(208, 208, 208, 0.9);">
+                <TableView fx:id="vehiculosTabla" layoutX="30.0" layoutY="78.0" prefHeight="341.0" prefWidth="472.0" style="-fx-background-color: rgba(208, 208, 208, 0.9);">
                     <columns>
-                        <TableColumn prefWidth="107.0" text="ID" />
-                        <TableColumn prefWidth="218.0" text="Nombre" />
-                        <TableColumn minWidth="0.0" prefWidth="146.0" text="Contacto" />
+                        <TableColumn fx:id="iDColumna" prefWidth="107.0" text="ID" />
+                        <TableColumn fx:id="nombreColumna" prefWidth="218.0" text="Nombre" />
+                        <TableColumn fx:id="contactoColumna" minWidth="0.0" prefWidth="146.0" text="Contacto" />
                     </columns>
                 </TableView>
          </children>
@@ -66,10 +66,10 @@
                                 <Font name="Candara" size="36.0" />
                             </font>
                         </Text>
-                        <TextField fx:id="clienteNombreField" promptText="Nombre del Cliente" />
-                        <TextField fx:id="clienteCedulaField" promptText="Cédula del Cliente" />
-                        <TextField fx:id="clienteEmailField" promptText="Correo del Cliente" />
-                        <Button onAction="#handleAñadirCliente" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Añadir Cliente" />
+                        <TextField fx:id="clienteNombreCampo" promptText="Nombre del Cliente" />
+                        <TextField fx:id="clienteCedulaCampo" promptText="Cédula del Cliente" />
+                        <TextField fx:id="clienteEmailCampo" promptText="Correo del Cliente" />
+                        <Button fx:id="añadirClienteBoton" onAction="#añadirClienteAccion" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Añadir Cliente" />
                     </children>
                 </VBox>
          </children>

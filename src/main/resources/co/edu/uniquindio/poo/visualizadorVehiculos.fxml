@@ -23,9 +23,9 @@
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <ComboBox fx:id="comboSeleccionarAtributo" onAction="#SeleccionarAtributoAccion" prefHeight="31.0" prefWidth="215.0" promptText="Seleccionar Atributo" />
-                  <TextField fx:id="campoBuscarEnTabla" onAction="#buscarEnTablaAccion" promptText="buscar" />
-                  <Button fx:id="botonFiltrar" mnemonicParsing="false" onAction="#filtrarAccion" text="Filtrar" />
+                  <ComboBox fx:id="seleccionarAtributoCombo" prefHeight="31.0" prefWidth="215.0" promptText="Seleccionar Atributo" />
+                  <TextField fx:id="buscarEnTablaCampo" promptText="buscar" />
+                  <Button fx:id="filtrarBoton" mnemonicParsing="false" onAction="#filtrarAccion" text="Filtrar" />
                </children>
             </HBox>
          </top>
@@ -35,13 +35,13 @@
          <center>
       
             <!-- Tabla de Vehículos -->
-            <TableView fx:id="tablaVehiculos" prefHeight="365.0" prefWidth="1210.0" style="-fx-background-color: rgba(255, 255, 255, 0.8);" BorderPane.alignment="CENTER">
+            <TableView fx:id="vehiculosTabla" prefHeight="365.0" prefWidth="1210.0" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn fx:id="columnaMatricula" prefWidth="93.0" text="Matricula" />
-                    <TableColumn fx:id="columnaMarca" prefWidth="132.0" text="Marca" />
-                    <TableColumn fx:id="columnaModelo" minWidth="0.0" prefWidth="143.0" text="Modelo" />
-                    <TableColumn fx:id="columnaPrecioporDia" minWidth="0.0" prefWidth="199.0" text="Precio por Dia" />
-                    <TableColumn fx:id="columnaPrecio" minWidth="0.0" prefWidth="217.0" text="Precio" />
+                    <TableColumn fx:id="matriculaColumna" prefWidth="93.0" text="Matricula" />
+                    <TableColumn fx:id="marcaColumna" prefWidth="132.0" text="Marca" />
+                    <TableColumn fx:id="modeloColumna" minWidth="0.0" prefWidth="143.0" text="Modelo" />
+                    <TableColumn fx:id="precioporDiaColumna" minWidth="0.0" prefWidth="199.0" text="Precio por Dia" />
+                    <TableColumn fx:id="precioColumna" minWidth="0.0" prefWidth="217.0" text="Precio" />
                 </columns>
             </TableView>
          </center>
@@ -65,19 +65,12 @@
       <!-- Panel lateral con imagen y detalles -->
       <Pane prefHeight="833.0" prefWidth="433.0" style="-fx-background-color: black;">
          <children>
-              <ImageView fx:id="imagenVehiculo1" fitHeight="300.0" fitWidth="300.0" layoutX="71.0" layoutY="102.0" preserveRatio="true" />
+              <ImageView fx:id="imagenVehiculo1" fitHeight="300.0" fitWidth="300.0" layoutX="71.0" layoutY="92.0" preserveRatio="true" />
               <ImageView fx:id="imagenVehiculo2" fitHeight="300.0" fitWidth="300.0" preserveRatio="true" visible="false" />
               <ImageView fx:id="imagenVehiculo3" fitHeight="300.0" fitWidth="300.0" preserveRatio="true" visible="false" />
-
-            <!-- Texto de instrucción para la selección -->
-            <Text fill="WHITE" layoutX="26.0" layoutY="77.0" text="Seleccione un vehiculo para obtener mas informacion" wrappingWidth="389.138671875">
-               <font>
-                  <Font name="Candara" size="17.0" />
-               </font>
-            </Text>
             
             <!-- Título de la sección -->
-            <Text fill="WHITE" layoutX="26.0" layoutY="56.0" text="Visualizador de Vehiculos">
+            <Text fill="WHITE" layoutX="26.0" layoutY="59.0" text="Visualizador de Vehiculos">
                <font>
                   <Font name="Candara" size="36.0" />
                </font>
@@ -91,9 +84,9 @@
             </Text>
 
             <!-- Botones de navegación -->
-            <Button fx:id="botonImagenAnterior" layoutX="34.0" layoutY="405.0" onAction="#ImagenAnteriorAccion" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: #D9534F; -fx-text-fill: white;" text="Anterior" />
-            <Button fx:id="botonImagenSiguiente" layoutX="312.0" layoutY="405.0" onAction="#ImagenSiguienteAccion" style="-fx-background-color: #D9534F; -fx-text-fill: white;" text="Siguiente" />
-            <TextArea fx:id="informacionAdicionalTexto" layoutX="26.0" layoutY="526.0" prefHeight="276.0" prefWidth="374.0" />
+            <Button fx:id="imagenAnteriorBoton" layoutX="34.0" layoutY="405.0" onAction="#ImagenAnteriorAccion" prefHeight="0.0" prefWidth="74.0" text="Anterior" />
+            <Button fx:id="imagenSiguienteBoton" layoutX="312.0" layoutY="405.0" onAction="#ImagenSiguienteAccion" text="Siguiente" />
+            <TextArea fx:id="informacionAdicionalTexto" layoutX="26.0" layoutY="526.0" prefHeight="276.0" prefWidth="374.0" promptText="Seleccione un vehiculo para obtener mas informacion" />
          </children>
       </Pane>
 

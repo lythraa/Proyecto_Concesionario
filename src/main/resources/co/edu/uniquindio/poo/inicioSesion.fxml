@@ -42,7 +42,7 @@
             <TextField fx:id="usuarioCampo" layoutX="50.0" layoutY="130.0" prefWidth="300" promptText="Usuario" />
             <PasswordField fx:id="contraseñaCampo" layoutX="50.0" layoutY="200.0" prefWidth="300" promptText="Contraseña" />
 
-            <Button fx:id="iniciarSesionCampo" layoutX="50.0" layoutY="270.0" prefWidth="300" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Iniciar" />
+            <Button fx:id="iniciarSesionBoton" layoutX="50.0" layoutY="270.0" prefWidth="300" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Iniciar" />
 
             <Hyperlink fx:id="olvideContraseñaLink" layoutX="50.0" layoutY="320.0" onAction="#handleOlvidoContraseña" style="-fx-font-size: 14px; -fx-text-fill: #007bff;" text="¿Olvidó su contraseña?" />
 

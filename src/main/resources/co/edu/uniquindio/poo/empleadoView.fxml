@@ -45,11 +45,12 @@
                   <Font name="Candara" size="36.0" />
                </font>
             </Text>
-                <Button layoutX="31.0" layoutY="88.0" onAction="#handleGestionClientes" prefWidth="200.0" text="Gestionar Clientes" />
-                <Button layoutX="31.0" layoutY="189.0" onAction="#handleTransacciones" prefWidth="200.0" text="Realizar Transacciones" />
-                <Button layoutX="31.0" layoutY="136.0" onAction="#handleGestionVehiculos" prefWidth="200.0" text="Gestionar Vehículos" />
-                <Button layoutX="31.0" layoutY="239.0" onAction="#handleHistorialTransacciones" prefWidth="200.0" text="Historial de Transacciones" />
-            <Button layoutX="31.0" layoutY="656.0" onAction="#handleHistorialTransacciones" prefWidth="200.0" text="Cerrar Sesion" />
+                <Button fx:id="gestionarClientesBoton" layoutX="31.0" layoutY="88.0" onAction="#gestionarClientesAccion" prefWidth="200.0" text="Gestionar Clientes" />
+                <Button fx:id="realizarTransaccionBoton" layoutX="31.0" layoutY="239.0" onAction="#realizarTransaccionAccion" prefWidth="200.0" text="Realizar Transaccion" />
+                <Button fx:id="gestionarVehiculosBoton" layoutX="31.0" layoutY="136.0" onAction="#gestionarVehiculosAccion" prefWidth="200.0" text="Ver Vehículos" />
+                <Button fx:id="historialTransaccionesBoton" layoutX="31.0" layoutY="289.0" onAction="#historialTransaccionesAccion" prefWidth="200.0" text="Historial de Transacciones" />
+            <Button fx:id="cerrarSesionBoton" layoutX="31.0" layoutY="656.0" onAction="#cerrarSesionAccion" prefWidth="200.0" text="Cerrar Sesion" />
+            <Button fx:id="añadirVehiculoBoton" layoutX="31.0" layoutY="186.0" onAction="#añadirVehiculoAccion" prefWidth="200.0" text="Añadir Vehiculo" />
          </children>
       </Pane>
 

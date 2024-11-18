@@ -18,12 +18,12 @@
         </ImageView>
       <BorderPane layoutX="455.0" layoutY="150.0" prefHeight="599.0" prefWidth="786.0">
          <top>
-            <HBox prefHeight="47.0" prefWidth="917.0" spacing="10.0" style="-fx-background-color: rgba(255, 255, 255, 0.8);" BorderPane.alignment="CENTER">
+            <HBox prefHeight="43.0" prefWidth="786.0" spacing="10.0" style="-fx-background-color: rgba(208, 208, 208, 0.9);" BorderPane.alignment="CENTER">
                <padding>
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <ComboBox fx:id="seleccionarAtributoCombo" prefHeight="31.0" prefWidth="215.0" promptText="Seleccionar Atributo" />
+                  <ComboBox fx:id="seleccionarAtributoCombo" prefHeight="26.0" prefWidth="215.0" promptText="Seleccionar Atributo" />
                   <TextField fx:id="buscarEnTablaCampo" promptText="buscar" />
                   <Button fx:id="filtrarBoton" mnemonicParsing="false" onAction="#filtrarAccion" text="Filtrar" />
                </children>
@@ -35,7 +35,7 @@
          <center>
       
             <!-- Tabla de Vehículos -->
-            <TableView fx:id="vehiculosTabla" prefHeight="365.0" prefWidth="1210.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="vehiculosTabla" prefHeight="365.0" prefWidth="1210.0" style="-fx-background-color: rgba(208, 208, 208, 0.9);" BorderPane.alignment="CENTER">
                 <columns>
                     <TableColumn fx:id="matriculaColumna" prefWidth="93.0" text="Matricula" />
                     <TableColumn fx:id="marcaColumna" prefWidth="132.0" text="Marca" />

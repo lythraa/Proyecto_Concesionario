@@ -39,18 +39,18 @@
       <Pane layoutX="-1.0" layoutY="100.0" prefHeight="733.0" prefWidth="360.0" style="-fx-background-color: black;">
          <children>
                 <!-- Formulario para añadir un Empleado -->
-                <VBox layoutX="37.0" layoutY="51.0" prefHeight="429.0" prefWidth="287.0" spacing="30.0">
+                <VBox layoutX="37.0" layoutY="51.0" prefHeight="429.0" prefWidth="287.0" spacing="25.0">
                     <children>
                         <Text fill="WHITE" text="Añadir Empleado" wrappingWidth="261.0859375">
                             <font>
                                 <Font name="Candara" size="36.0" />
                             </font>
                         </Text>
-                        <TextField fx:id="EmpleadoNombreCampo" prefHeight="31.0" prefWidth="265.0" promptText="Nombre" />
-                        <TextField fx:id="EmpleadoCedulaCampo" promptText="Cédula" />
-                  <TextField fx:id="EmpleadoUsuarioCampo" promptText="Usuario" />
-                        <TextField fx:id="EmpleadoEmailCampo" promptText="Correo" />
-                  <PasswordField fx:id="EmpleadoContraseñaCampo" promptText="Contraseña" />
+                        <TextField fx:id="EmpleadoNombreCampo" prefHeight="30.0" prefWidth="287.0" promptText="Nombre" />
+                        <TextField fx:id="EmpleadoCedulaCampo" prefHeight="30.0" prefWidth="287.0" promptText="Cédula" />
+                  <TextField fx:id="EmpleadoUsuarioCampo" prefHeight="30.0" prefWidth="287.0" promptText="Usuario" />
+                        <TextField fx:id="EmpleadoEmailCampo" prefHeight="30.0" prefWidth="287.0" promptText="Correo" />
+                  <PasswordField fx:id="EmpleadoContraseñaCampo" prefHeight="30.0" prefWidth="287.0" promptText="Contraseña" />
                         <Button fx:id="añadirEmpleadoBoton" onAction="#añadirEmpleadoAccion" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Añadir Empleado" />
                     </children>
                 </VBox>
@@ -72,12 +72,15 @@
                 </TableView>
          </center>
          <top>
-            <HBox prefHeight="46.0" prefWidth="834.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="46.0" prefWidth="834.0" spacing="10.0" style="-fx-background-color: rgba(208, 208, 208, 0.9);" BorderPane.alignment="CENTER">
                <children>
                   <ComboBox fx:id="atributoABuscarCombo" prefWidth="150.0" promptText="Atributo" />
-                  <TextField fx:id="busquedaCampo" prefHeight="31.0" prefWidth="271.0" />
-                  <Button fx:id="buscarBoton" onAction="#buscarAccion" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-font-size: 16px;" text="Buscar" />
+                  <TextField fx:id="busquedaCampo" prefHeight="20.0" prefWidth="271.0" />
+                  <Button fx:id="buscarBoton" onAction="#buscarAccion" text="Buscar" />
                </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
             </HBox>
          </top>
          <bottom>
@@ -88,7 +91,7 @@
             </Pagination>
          </bottom>
       </BorderPane>
-      <Button fx:id="eliminarBoton" layoutX="1162.0" layoutY="701.0" onAction="#eliminarAccion" style="-fx-background-color: #D9534F; -fx-text-fill: white; -fx-font-size: 16px;" text="Eliminar" />
+      <Button fx:id="eliminarBoton" layoutX="1162.0" layoutY="701.0" onAction="#eliminarAccion" style="-fx-background-color: #D9534F; -fx-text-fill: white; -fx-font-size: 14px;" text="Eliminar" />
 
     </children>
 </AnchorPane>

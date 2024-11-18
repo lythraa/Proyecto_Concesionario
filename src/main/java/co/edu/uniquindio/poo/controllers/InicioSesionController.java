@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 public class InicioSesionController {
 
     private Concesionario concesionario = Concesionario.getInstancia();// concesionario.java
-    private Administrador adminSys = new Administrador("1090", "Miguel", true, "miguel@32.com", "miguel123", "12345678");
 
     @FXML
     private ResourceBundle resources;
@@ -55,7 +54,7 @@ public class InicioSesionController {
         
     if (empleado != null) {
         if (empleado instanceof Administrador) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("administradorView"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
             try {
             Parent root = loader.load();
             Stage stage = (Stage) 
@@ -71,8 +70,6 @@ public class InicioSesionController {
             // Ejemplo: mostrar vista de empleado
         }
     } else {
-        // Acción para el caso en que el empleado es null
-        // Ejemplo: mostrar un mensaje de error o pedir al usuario ingresar datos
     }
     }
 

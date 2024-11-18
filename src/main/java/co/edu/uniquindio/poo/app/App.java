@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import co.edu.uniquindio.poo.model.Concesionario;
 
 /**
  * JavaFX App
@@ -29,7 +28,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/poo/inicioSesion.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/poo/registrarAdministradorView.fxml"));
         return fxmlLoader.load();
     }
 

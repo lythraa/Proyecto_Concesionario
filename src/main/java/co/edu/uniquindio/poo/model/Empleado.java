@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Empleado implements Autenticable {
 
-    private Concesionario concesionario;
+    private Concesionario concesionario = Concesionario.getInstancia();
     private LinkedList<Cliente> listaClientes;
     private LinkedList<Transaccion> listaTransacciones;
     private LinkedList<Vehiculo> listaVehiculos;
@@ -145,18 +145,6 @@ public class Empleado implements Autenticable {
         return "Aun no se ha completado la revision tecnica";
     }
 
-    /**
-     * Verfica que el empleado esté activo y sus credenciales sean correctas
-     * @param s
-     * @param c
-     * @return
-     */
-    public boolean verificarCredenciales(String s, String c) {
-        if (s.equals(getUsuario()) && c.equals(getContraseña()) && isActivo()) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Recuperar contra a partir de compara email

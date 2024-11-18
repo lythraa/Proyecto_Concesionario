@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 public class Concesionario {
 
+    private static Concesionario instancia;
+
     private String nombre;
     private LinkedList<Empleado> listaEmpleados;
     private LinkedList<Cliente> listaClientes;
@@ -64,6 +66,13 @@ public class Concesionario {
 
     public void setListaReportes(LinkedList<Reporte> listaReportes) {
         this.listaReportes = listaReportes;
+    }
+    
+    public static Concesionario getInstancia() {
+        if (instancia == null) {
+            instancia = new Concesionario("Concesionario UQ");
+        }
+        return instancia;
     }
 
     // CRUDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
@@ -143,5 +152,22 @@ public class Concesionario {
         listaEmpleados.remove(empleado);
         listaEmpleados.add(nuevoEmpleado);
         return mensaje;
+    }
+
+
+    /**
+     * Verfica que el empleado esté activo y sus credenciales sean correctas
+     * @param s
+     * @param c
+     * @return
+     */
+    public Empleado verificarCredenciales(String s, String c) {
+        for (Empleado empleado : listaEmpleados) {
+            if (s.equals(empleado.getUsuario()) && c.equals(empleado.getContraseña()) && empleado.isActivo()) {
+                return empleado;
+            }
+            
+        }
+        return null;    
     }
 }

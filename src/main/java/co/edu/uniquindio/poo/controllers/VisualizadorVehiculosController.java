@@ -26,7 +26,7 @@ public class VisualizadorVehiculosController {
     private Pagination paginacionTabla;
 
     @FXML
-    private ComboBox<?> seleccionarAtributoCombo;
+    private ComboBox<String> seleccionarAtributoCombo;
 
     @FXML
     private TextField buscarEnTablaCampo;
@@ -72,7 +72,7 @@ public class VisualizadorVehiculosController {
 
     @FXML
     void filtrarAccion(ActionEvent event) {
-
+        
     }
 
     @FXML

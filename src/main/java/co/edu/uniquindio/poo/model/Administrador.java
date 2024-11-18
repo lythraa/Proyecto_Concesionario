@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Administrador extends Empleado {
 
-    private Concesionario concesionario;
+    private Concesionario concesionario = Concesionario.getInstancia();
     private LinkedList<Empleado> listaEmpleados;
     private LinkedList<Reporte> listaReportes;
 

@@ -2,12 +2,12 @@ package co.edu.uniquindio.poo.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+
 public class AdministradorController {
-
-
 
     @FXML
     private ResourceBundle resources;
@@ -16,35 +16,22 @@ public class AdministradorController {
     private URL location;
 
     @FXML
-    private Button añadirVehiculoBoton;
-
-    @FXML
-    private Button cerrarSesionBoton;
-
-    @FXML
-    private Button gestionarClientesBoton;
+    private Button historialTransaccionesBoton;
 
     @FXML
     private Button gestionarEmpleadosBoton1;
 
     @FXML
-    private Button gestionarVehiculosBoton;
-
-    @FXML
-    private Button historialTransaccionesBoton;
+    private Button cerrarSesionBoton;
 
     @FXML
     private Button realizarTransaccionBoton;
 
     @FXML
-    void añadirVehiculoAccion(ActionEvent event) {
-
-    }
+    private Button gestionarClientesBoton;
 
     @FXML
-    void cerrarSesionAccion(ActionEvent event) {
-
-    }
+    private Button gestionarVehiculosBoton;
 
     @FXML
     void gestionarClientesAccion(ActionEvent event) {
@@ -52,7 +39,7 @@ public class AdministradorController {
     }
 
     @FXML
-    void gestionarEmpleadosAccion(ActionEvent event) {
+    void realizarTransaccionAccion(ActionEvent event) {
 
     }
 
@@ -67,22 +54,23 @@ public class AdministradorController {
     }
 
     @FXML
-    void realizarTransaccionAccion(ActionEvent event) {
+    void cerrarSesionAccion(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gestionarEmpleadosAccion(ActionEvent event) {
 
     }
 
     @FXML
     void initialize() {
-        assert añadirVehiculoBoton != null : "fx:id=\"añadirVehiculoBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert cerrarSesionBoton != null : "fx:id=\"cerrarSesionBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert gestionarClientesBoton != null : "fx:id=\"gestionarClientesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert gestionarEmpleadosBoton1 != null : "fx:id=\"gestionarEmpleadosBoton1\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert gestionarVehiculosBoton != null : "fx:id=\"gestionarVehiculosBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
         assert historialTransaccionesBoton != null : "fx:id=\"historialTransaccionesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarEmpleadosBoton1 != null : "fx:id=\"gestionarEmpleadosBoton1\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert cerrarSesionBoton != null : "fx:id=\"cerrarSesionBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
         assert realizarTransaccionBoton != null : "fx:id=\"realizarTransaccionBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarClientesBoton != null : "fx:id=\"gestionarClientesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarVehiculosBoton != null : "fx:id=\"gestionarVehiculosBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
 
     }
-
 }
-
-

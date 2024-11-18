@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Pos?>
 
-<AnchorPane prefHeight="833.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.controllers.VisualizadorVehiculosController">
+<AnchorPane prefHeight="833.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.controllers.GestionarVehiculosController">
     <children>
         <ImageView fitHeight="833.0" fitWidth="1265.0">
             <image>
@@ -70,7 +70,7 @@
               <ImageView fx:id="imagenVehiculo3" fitHeight="300.0" fitWidth="300.0" preserveRatio="true" visible="false" />
             
             <!-- Título de la sección -->
-            <Text fill="WHITE" layoutX="26.0" layoutY="59.0" text="Visualizador de Vehiculos">
+            <Text fill="WHITE" layoutX="26.0" layoutY="59.0" text="Gestion de Vehiculos">
                <font>
                   <Font name="Candara" size="36.0" />
                </font>
@@ -91,7 +91,24 @@
       </Pane>
 
       <!-- Pie de página para agregar vehículo -->
-      <Pane layoutX="433.0" layoutY="769.0" prefHeight="64.0" prefWidth="832.0" style="-fx-background-color: black;" />
+      <Pane layoutX="433.0" layoutY="769.0" prefHeight="64.0" prefWidth="832.0" style="-fx-background-color: black;">
+         <children>
+            <Text fill="WHITE" layoutX="509.0" layoutY="39.0" text="Desea agregar un vehiculo?">
+               <font>
+                  <Font name="Candara Italic" size="19.0" />
+               </font>
+            </Text>
+            <Hyperlink fx:id="registrarVehiculoLink" layoutX="721.0" layoutY="15.0" onAction="#registrarVehiculoAccion" text="Click aqui">
+               <font>
+                  <Font name="Candara Italic" size="20.0" />
+               </font>
+            </Hyperlink>
+         </children></Pane>
+      <Pane layoutX="1164.0" layoutY="719.0" prefHeight="50.0" prefWidth="74.0">
+         <children>
+            <Button fx:id="eliminarVehiculoBoton" layoutX="8.0" layoutY="-9.0" onAction="#eliminarVehiculoAccion" style="-fx-background-color: #D9534F;" text="Eliminar" />
+         </children>
+      </Pane>
 
     </children>
 </AnchorPane>

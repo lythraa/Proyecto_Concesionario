@@ -129,10 +129,10 @@
                   </Text>
                   <HBox prefHeight="62.0" prefWidth="1213.0" spacing="20.0">
                      <children>
-                        <VBox prefHeight="95.0" prefWidth="75.0">
+                        <VBox prefHeight="38.0" prefWidth="101.0">
                            <children>
                               <Label text="No. Pasajeros:" />
-                              <TextField prefHeight="25.0" prefWidth="66.0" />
+                              <TextField prefHeight="16.0" prefWidth="101.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="52.0" prefWidth="130.0">
@@ -196,128 +196,144 @@
                         </HBox>
                         <HBox fx:id="camionesPanel" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="52.0" prefWidth="115.0">
                                  <children>
-                                    <Label text="No. de Pasajeros: " />
+                                    <Label text="No. de Puertas:" />
                                     <TextField prefHeight="25.0" prefWidth="66.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="57.0" prefWidth="152.0">
                                  <children>
-                                    <Label text="No. Salidas de Emergencia:" />
+                                    <Label text="No. Bolsas de Aire:" />
+                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="57.0" prefWidth="152.0">
+                                 <children>
+                                    <Label text="No. Caballos de fuerza:" />
+                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="52.0" prefWidth="210.0">
+                                 <children>
+                                    <Label text="Tiempo para alcanzar 100KmH" />
                                     <TextField prefHeight="25.0" prefWidth="120.0" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="busPanel2" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
+                        <HBox fx:id="deportivoPanel" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="31.0" prefWidth="114.0">
                                  <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
+                                    <Label text="No. de Puertas:" />
+                                    <TextField prefHeight="31.0" prefWidth="112.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="57.0" prefWidth="152.0">
                                  <children>
-                                    <Label text="No. Salidas de Emergencia:" />
+                                    <Label text="No. Bolsas de Aire:" />
+                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="57.0" prefWidth="152.0">
+                                 <children>
+                                    <Label text="No. Caballos de fuerza:" />
+                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="52.0" prefWidth="210.0">
+                                 <children>
+                                    <Label text="Tiempo para alcanzar 100KmH" />
                                     <TextField prefHeight="25.0" prefWidth="120.0" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="busPanel3" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
+                        <HBox fx:id="pickUpPanel" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
+                                    <Label text="Es 4x4?" />
+                                    <ComboBox prefWidth="150.0" />
                                  </children>
                               </VBox>
-                              <VBox prefHeight="57.0" prefWidth="152.0">
+                              <VBox prefHeight="52.0" prefWidth="172.0">
                                  <children>
-                                    <Label text="No. Salidas de Emergencia:" />
+                                    <Label text="Capacidad Caja de Carga:" />
                                     <TextField prefHeight="25.0" prefWidth="120.0" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="busPanel4" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
+                        <HBox fx:id="sedanPanel" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="41.0" prefWidth="167.0">
                                  <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
+                                    <Label prefHeight="21.0" prefWidth="165.0" text="Velocidad de Crucero:" />
+                                    <ComboBox prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="57.0" prefWidth="152.0">
                                  <children>
-                                    <Label text="No. Salidas de Emergencia:" />
-                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                    <Label text="Sensores de Colision:" />
+                                    <ComboBox prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="57.0" prefWidth="152.0">
+                                 <children>
+                                    <Label text="Sensor de Trafico Cruzado:" />
+                                    <ComboBox prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="57.0" prefWidth="152.0">
+                                 <children>
+                                    <Label text="Tiene Asistencia de Permanencia en el Carril" />
+                                    <ComboBox prefWidth="150.0" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="busPanel5" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
+                        <HBox fx:id="SUVPanel" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="41.0" prefWidth="167.0">
                                  <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
+                                    <Label prefHeight="21.0" prefWidth="165.0" text="Velocidad de Crucero:" />
+                                    <ComboBox prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="57.0" prefWidth="152.0">
                                  <children>
-                                    <Label text="No. Salidas de Emergencia:" />
-                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                    <Label text="Sensores de Colision:" />
+                                    <ComboBox prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="57.0" prefWidth="152.0">
+                                 <children>
+                                    <Label text="Sensor de Trafico Cruzado:" />
+                                    <ComboBox prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="57.0" prefWidth="152.0">
+                                 <children>
+                                    <Label text="Tiene Asistencia de Permanencia en el Carril" />
+                                    <ComboBox prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Es 4x4?" />
+                                    <ComboBox prefWidth="150.0" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="busPanel6" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
+                        <HBox fx:id="VanPanel" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="57.0" prefWidth="152.0">
-                                 <children>
-                                    <Label text="No. Salidas de Emergencia:" />
-                                    <TextField prefHeight="25.0" prefWidth="120.0" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="busPanel7" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="57.0" prefWidth="152.0">
-                                 <children>
-                                    <Label text="No. Salidas de Emergencia:" />
-                                    <TextField prefHeight="25.0" prefWidth="120.0" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="busPanel8" prefHeight="38.0" prefWidth="902.0" spacing="20.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="No. de Ejes:" />
-                                    <TextField prefHeight="25.0" prefWidth="66.0" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="57.0" prefWidth="152.0">
-                                 <children>
-                                    <Label text="No. Salidas de Emergencia:" />
-                                    <TextField prefHeight="25.0" prefWidth="120.0" />
+                                    <Label text="Es Linda?" />
+                                    <ComboBox fx:id="tipoVehiculoCombo1" prefHeight="25.0" prefWidth="203.0" />
                                  </children>
                               </VBox>
                            </children>

@@ -177,6 +177,14 @@ public class Empleado implements Autenticable {
         return mensaje;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado [concesionario=" + concesionario + ", listaClientes=" + listaClientes + ", listaTransacciones="
+                + listaTransacciones + ", listaVehiculos=" + listaVehiculos + ", id=" + id + ", nombre=" + nombre
+                + ", activo=" + activo + ", email=" + email + ", usuario=" + usuario + ", contraseña=" + contraseña
+                + "]";
+    }
+
     /**
      * Eliminar Cliente
      * 

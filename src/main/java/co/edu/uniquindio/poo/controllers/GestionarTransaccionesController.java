@@ -193,6 +193,7 @@ public class GestionarTransaccionesController {
                         }
                 }
                 limpiarCampos();
+                cargarTabla();
         }
 
         @FXML

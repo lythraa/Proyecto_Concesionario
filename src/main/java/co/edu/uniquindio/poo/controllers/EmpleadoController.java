@@ -55,11 +55,32 @@ public class EmpleadoController {
     @FXML
     void gestionarClientesAccion(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/gestionarClientesView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión clientes");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void gestionarTransaccionesAccion(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/co/edu/uniquindio/poo/gestionarTransaccionesView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión transacciones");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

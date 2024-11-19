@@ -71,8 +71,7 @@ public class AdministradorController {
     @FXML
     void gestionarVehiculosAccion(ActionEvent event) {
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
         try {
             Parent root = loader.load();
             Stage stage = App.getStage();

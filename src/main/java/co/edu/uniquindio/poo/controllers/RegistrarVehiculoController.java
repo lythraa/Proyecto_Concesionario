@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Transmision;
 import co.edu.uniquindio.poo.model.Bus;
+import co.edu.uniquindio.poo.model.Camiones;
 import co.edu.uniquindio.poo.model.Deportivo;
 import co.edu.uniquindio.poo.model.PickUp;
 import co.edu.uniquindio.poo.model.SUV;
@@ -252,42 +254,40 @@ public class RegistrarVehiculoController {
         String matricula = matriculaCampo.getText();
         String cilindraje = cilindrajeCampo.getText();
         String tipoCombustible = tipoCombustibleCombo.getValue();
-        transmisionCombo
+        Transmision tipo = transmisionCombo.getValue();
 
         if (tipoVehiculo != null) {
             if (tipoVehiculo.equals("Deportivo")) {
                 double tiempo100KmH = Double.parseDouble(TiempoAlcanzar100KmHDeportivoCampo.getText());
                 double caballosFuerza = Double.parseDouble(NumcaballosFuerzaDeportivoCampo.getText());
-                Deportivo deportivo = new Deportivo(marca, modelo, matricula, precio, tipoCombustible, tiempo100KmH, caballosFuerza);
+                Deportivo deportivo = new Deportivo(matricula, marca, modelo, false, 0, caballosFuerza, cilindraje, precio, precioDiaAlquiler, false, null, null, 0, 0, tiempo100KmH, false, false, 0, false, 0, caballosFuerza);
 
             } else {
                 //carros
                 int numPuertas = Integer.parseInt(NumPuertasCarroCampo.getText());
                 int numPasajeros = Integer.parseInt(NumPasajerosCarroCampo.getText());
-                double capacidadDelMaletero = Double.parseDouble(capacidadDelMaletero.getText());
-                
+                double capacidadDelMaletero = Double.parseDouble(CapacidadMaleteroCarroCampo.getText());//no se
+
+
                 boolean tieneAireAcondicionado = TieneAireAcondicionadoCarroCombo.getValue().equals("Sí");
+                boolean TieneAbsCombo = TieneAbsCarroCombo.getValue().equals("Sí");
+                boolean TieneCamaraReversaCarroCombo = TieneCamaraReversaCarroCombo.getValue().equals("Sí");
+
+
                 boolean tieneSensoresColision = false;
                 boolean tieneSensorTraficoCruzado = false;
                 boolean tieneVelocidadCrucero = false;
                 boolean tieneAsistenciaCarril = false;
                 boolean es4x4 = false;
 
-                // Dependiendo del tipo de vehículo, asignamos atributos específicos
                 if (tipoVehiculo.equals("Sedán")) {
-                    // Atributos específicos para un sedán
                     tieneSensoresColision = TieneSensoresColisionSedanCombo.getValue().equals("Sí");
                     tieneSensorTraficoCruzado = TieneSensorTraficoCruzadoSedanCombo.getValue().equals("Sí");
                     tieneVelocidadCrucero = TieneVelocidadCruceroSedanCombo.getValue().equals("Sí");
                     tieneAsistenciaCarril = TieneAsistenciaPermanenciaCarrilSedanCombo.getValue().equals("Sí");
 
-                    // Crear el objeto Sedan
-                    Sedan sedan = new Sedan(marca, modelo, matricula, precio, tipoCombustible, numPuertas, numPasajeros,
-                            tieneAireAcondicionado, tieneSensoresColision, tieneSensorTraficoCruzado,
-                            tieneVelocidadCrucero, tieneAsistenciaCarril);
-                    // Añadir el sedán al sistema
-                    System.out.println("Vehículo sedán añadido: " + sedan);
-
+                    Sedan sedan = new Sedan(matricula, marca, modelo, es4x4, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, TieneCamaraReversaCarroCombo, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision, tieneAsistenciaCarril, es4x4);
+                    
                 } else if (tipoVehiculo.equals("SUV")) {
                     // Atributos específicos para un SUV
                     tieneSensoresColision = TieneSensoresColisionSUVCombo.getValue().equals("Sí");
@@ -296,60 +296,38 @@ public class RegistrarVehiculoController {
                     tieneAsistenciaCarril = TieneAsistenciaPermanenciaCarrilSUVCombo.getValue().equals("Sí");
                     es4x4 = Es4x4SUVCombo.getValue().equals("Sí");
 
-                    // Crear el objeto SUV
-                    SUV suv = new SUV(marca, modelo, matricula, precio, tipoCombustible, numPuertas, numPasajeros,
-                            tieneAireAcondicionado, tieneSensoresColision, tieneSensorTraficoCruzado,
-                            tieneVelocidadCrucero, tieneAsistenciaCarril, es4x4);
-                    // Añadir el SUV al sistema
-                    System.out.println("Vehículo SUV añadido: " + suv);
-
+                    SUV suv = new SUV(matricula, marca, modelo, es4x4, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, TieneCamaraReversaCarroCombo, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision, tieneVelocidadCrucero, tieneAsistenciaCarril, es4x4);
+                    
                 } else if (tipoVehiculo.equals("PickUp")) {
-                    // Atributos específicos para una PickUp
                     double capacidadCarga = Double.parseDouble(CapacidadCargaPickUpCampo.getText());
                     es4x4 = Es4x4PickUpCombo.getValue().equals("Sí");
 
-                    // Crear el objeto PickUp
-                    PickUp pickUp = new PickUp(marca, modelo, matricula, precio, tipoCombustible, capacidadCarga,
-                            numPasajeros,
-                            tieneAireAcondicionado, es4x4);
-                    // Añadir la PickUp al sistema
-                    System.out.println("Vehículo PickUp añadido: " + pickUp);
+                    PickUp pickUp = new PickUp(matricula, marca, modelo, tieneSensorTraficoCruzado, numPasajeros, capacidadCarga, cilindraje, precio, precioDiaAlquiler, tieneVelocidadCrucero, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAsistenciaCarril, numPasajeros, TieneAbsCombo, es4x4, capacidadCarga);
+                    
 
                 } else if (tipoVehiculo.equals("Camión")) {
-                    // Atributos específicos para un camión
                     int numEjes = Integer.parseInt(NumEjesBusCampo.getText());
                     boolean tieneAbs = TieneAbsCarroCombo.getValue().equals("Sí");
                     double tiempoCarga = Double.parseDouble(tiempoCargaCampo.getText());
 
-                    // Crear el objeto Camión
-                    Camion camion = new Camion(marca, modelo, matricula, precio, tipoCombustible, numEjes, tieneAbs,
-                            tiempoCarga);
-                    // Añadir el camión al sistema
-                    System.out.println("Vehículo camión añadido: " + camion);
-
+                    Camiones camion = new Camiones(matricula, marca, modelo, tieneAsistenciaCarril, numEjes, tiempoCarga, cilindraje, precio, precioDiaAlquiler, es4x4, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAbs, numPasajeros, tieneAbs, numEjes, tiempoCarga);
+                    
                 } else if (tipoVehiculo.equals("Van")) {
-                    // Atributos específicos para una Van
                     boolean esLinda = EsLindaVanCombo.getValue().equals("Sí");
 
-                    // Crear el objeto Van
-                    Van van = new Van(marca, modelo, matricula, precio, tipoCombustible, esLinda);
-                    // Añadir la Van al sistema
-                    System.out.println("Vehículo Van añadido: " + van);
-
+                    Van van = new Van(matricula, marca, modelo, tieneVelocidadCrucero, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, tieneAsistenciaCarril, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4, numPasajeros, TieneAbsCombo, esLinda);
+                   
                 } else if (tipoVehiculo.equals("Bus")) {
-                    // Atributos específicos para un bus
+                   
                     int numSalidasEmergencia = Integer.parseInt(NumSalidasEmergenciaBusCampo.getText());
-                    numPasajeros = Integer.parseInt(NumPasajerosCarroCampo.getText());
+                    int numeroDeEjes = Integer.parseInt(NumEjesBusCampo.getText());
 
-                    // Crear el objeto Bus
-                    Bus bus = new Bus(marca, modelo, matricula, precio, tipoCombustible, numSalidasEmergencia,
-                            numPasajeros);
-                    // Añadir el bus al sistema
-                    System.out.println("Vehículo bus añadido: " + bus);
+                   
+                    Bus bus = new Bus(matricula, marca, modelo, tieneVelocidadCrucero, numeroDeEjes, numeroDeEjes, cilindraje, precio, precioDiaAlquiler, tieneAsistenciaCarril, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4, numSalidasEmergencia, TieneAbsCombo, numeroDeEjes, numeroDeEjes);
+                   
                 }
             }
         } else {
-            // Si no se seleccionó un tipo de vehículo
             System.out.println("Por favor, seleccione un tipo de vehículo.");
         }
     }
@@ -403,6 +381,7 @@ public class RegistrarVehiculoController {
         inicializarComboBox(esEnchufableCombo);
         inicializarComboBox(transmisionCombo);
         inicializarComboBox(Es4x4SUVCombo);
+        inicializarComboBox(TieneCamaraReversaCarroCombo);
         tipoVehiculoCombo.getItems().addAll("Sedán", "SUV", "Deportivo", "PickUp", "Camión", "Van", "Bus");
         tipoVehiculoCombo.setOnAction(this::mostrarPanelPorVehiculo);
 

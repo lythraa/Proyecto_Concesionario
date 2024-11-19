@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class GestionarClientesController {
@@ -175,6 +176,9 @@ public class GestionarClientesController {
 
     @FXML
     void initialize() {
+        iDColumna.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
+        nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        contactoColumna.setCellValueFactory(new PropertyValueFactory<>("email"));
         assert añadirClienteBoton != null
                 : "fx:id=\"añadirClienteBoton\" was not injected: check your FXML file 'gestionarClientesView.fxml'.";
         assert vehiculosTabla != null

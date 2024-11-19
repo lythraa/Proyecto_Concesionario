@@ -56,7 +56,7 @@ public class AdministradorController {
     @FXML
     void realizarTransaccionAccion(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/gestionarTransacciones.fxml"));
+                        getClass().getResource("/co/edu/uniquindio/poo/gestionarTransaccionesView.fxml"));
                 try {
                     Parent root = loader.load();
                     Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
@@ -71,7 +71,7 @@ public class AdministradorController {
     void gestionarVehiculosAccion(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculos.fxml"));
+                        getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
                 try {
                     Parent root = loader.load();
                     Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
@@ -108,7 +108,7 @@ public class AdministradorController {
     void gestionarEmpleadosAccion(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/gestionarEmpleados.fxml"));
+                        getClass().getResource("/co/edu/uniquindio/poo/gestionarEmpleadosView.fxml"));
                 try {
                     Parent root = loader.load();
                     Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();

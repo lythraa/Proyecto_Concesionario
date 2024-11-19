@@ -163,17 +163,6 @@ public class GestionarClientesController {
         }else{
             InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
     }
-        String nombre = clienteNombreCampo.getText();
-        String id = clienteCedulaCampo.getText();
-        String contacto = clienteEmailCampo.getText();
-
-        if (nombre.isEmpty() || id.isEmpty() || contacto.isEmpty()) {
-            System.out.println("Por favor, completa todos los campos.");
-            return;
-        }
-        Cliente nuevoCliente = new Cliente(id, nombre, contacto);
-        Concesionario.getInstancia().getListaClientes().add(nuevoCliente);
-        System.out.println("Cliente añadido exitosamente.");
         limpiarCampos();
         cargarTablaClientes();
     }

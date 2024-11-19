@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -39,7 +40,7 @@ public class GestionarEmpleadosController {
     private URL location;
 
     @FXML
-    private TableColumn<Empleado, String> estadoColumna;
+    private TableColumn<Empleado, Boolean> estadoColumna;
 
     @FXML
     private TextField busquedaCampo;
@@ -226,16 +227,29 @@ public class GestionarEmpleadosController {
         cargarTabla();
     }
 
-    
     @FXML
     void initialize() {
         cargarTabla();
-        estadoColumna.setCellValueFactory(new PropertyValueFactory<>("estado"));
         emailColumna.setCellValueFactory(new PropertyValueFactory<>("email"));
         usuarioColumna.setCellValueFactory(new PropertyValueFactory<>("usuario"));
         iDColumna.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        
+        estadoColumna.setCellValueFactory(new PropertyValueFactory<>("activo"));
+        estadoColumna.setCellValueFactory(new PropertyValueFactory<>("activo"));
+        estadoColumna.setCellFactory(column -> {
+            return new TableCell<Empleado, Boolean>() {
+                @Override
+                protected void updateItem(Boolean item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(item ? "Activo" : "Inactivo");
+                    }
+                }
+            };
+        });
+
         assert estadoColumna != null
                 : "fx:id=\"estadoColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
         assert busquedaCampo != null

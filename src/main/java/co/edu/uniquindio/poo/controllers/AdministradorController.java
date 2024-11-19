@@ -59,7 +59,7 @@ public class AdministradorController {
                         getClass().getResource("/co/edu/uniquindio/poo/gestionarTransaccionesView.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Gestión transacciones");
                     stage.show();
@@ -74,7 +74,7 @@ public class AdministradorController {
                         getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Gestión Vehiculos");
                     stage.show();
@@ -94,7 +94,7 @@ public class AdministradorController {
                         getClass().getResource("/co/edu/uniquindio/poo/inicioSesion.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Inicio Sesión");
                     stage.show();
@@ -111,7 +111,7 @@ public class AdministradorController {
                         getClass().getResource("/co/edu/uniquindio/poo/gestionarEmpleadosView.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Gestión empleados");
                     stage.show();

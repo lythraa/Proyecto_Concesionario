@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
@@ -17,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
@@ -39,9 +39,6 @@ public class GestionarVehiculosController {
 
     @FXML
     private Pagination paginacionTabla;
-
-    @FXML
-    private ComboBox<?> seleccionarAtributoCombo;
 
     @FXML
     private TextField buscarEnTablaCampo;
@@ -83,7 +80,7 @@ public class GestionarVehiculosController {
     private TableColumn<?, ?> matriculaColumna;
 
     @FXML
-    private Button filtrarBoton;
+    private Button buscarBoton;
 
     @FXML
     private TableColumn<?, ?> precioporDiaColumna;
@@ -124,8 +121,24 @@ public class GestionarVehiculosController {
     }
 
     @FXML
-    void filtrarAccion(ActionEvent event) {
+    void buscarAccion(ActionEvent event) {
+        if (buscarEnTablaCampo != null) {
+            String busqueda = buscarEnTablaCampo.getText();
+            LinkedList<Vehiculo> resultados = new LinkedList<>();
 
+            for (Vehiculo vehiculo : concesionario.getListaVehiculos()) {
+                if (vehiculo.getMatricula().equalsIgnoreCase(busqueda) ||
+                        vehiculo.getMarca().equalsIgnoreCase(busqueda) || vehiculo.getModelo().equalsIgnoreCase(busqueda)) {
+                    resultados.add(vehiculo);
+                }
+            }
+
+            if (resultados.isEmpty()) {
+                InicioSesionController.mostrarAlertaInfo("No se encontró");
+            } else {
+                vehiculosTabla.getItems().setAll(resultados);
+            }
+        }
     }
 
     @FXML
@@ -141,6 +154,17 @@ public class GestionarVehiculosController {
     @FXML
     void registrarVehiculoAccion(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uniquindio/poo/registrarVehiculoView.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = App.getStage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Gestion Vehiculo");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
     }
 
     @FXML
@@ -165,24 +189,26 @@ public class GestionarVehiculosController {
 
     @FXML
     void initialize() {
-        assert paginacionTabla != null : "fx:id=\"paginacionTabla\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert seleccionarAtributoCombo != null : "fx:id=\"seleccionarAtributoCombo\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        cargarTabla();
+        assert atrasButton != null : "fx:id=\"atrasButton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert buscarBoton != null : "fx:id=\"buscarBoton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert buscarEnTablaCampo != null : "fx:id=\"buscarEnTablaCampo\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert eliminarVehiculoBoton != null : "fx:id=\"eliminarVehiculoBoton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert registrarVehiculoLink != null : "fx:id=\"registrarVehiculoLink\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert modeloColumna != null : "fx:id=\"modeloColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert imagenVehiculo1 != null : "fx:id=\"imagenVehiculo1\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert precioColumna != null : "fx:id=\"precioColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert imagenVehiculo2 != null : "fx:id=\"imagenVehiculo2\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert imagenAnteriorBoton != null : "fx:id=\"imagenAnteriorBoton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert imagenSiguienteBoton != null : "fx:id=\"imagenSiguienteBoton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert vehiculosTabla != null : "fx:id=\"vehiculosTabla\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert marcaColumna != null : "fx:id=\"marcaColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert imagenVehiculo1 != null : "fx:id=\"imagenVehiculo1\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert imagenVehiculo2 != null : "fx:id=\"imagenVehiculo2\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert imagenVehiculo3 != null : "fx:id=\"imagenVehiculo3\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert informacionAdicionalTexto != null : "fx:id=\"informacionAdicionalTexto\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert marcaColumna != null : "fx:id=\"marcaColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert matriculaColumna != null : "fx:id=\"matriculaColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert filtrarBoton != null : "fx:id=\"filtrarBoton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert modeloColumna != null : "fx:id=\"modeloColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert paginacionTabla != null : "fx:id=\"paginacionTabla\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert precioColumna != null : "fx:id=\"precioColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert precioporDiaColumna != null : "fx:id=\"precioporDiaColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert imagenAnteriorBoton != null : "fx:id=\"imagenAnteriorBoton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert registrarVehiculoLink != null : "fx:id=\"registrarVehiculoLink\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
+        assert vehiculosTabla != null : "fx:id=\"vehiculosTabla\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
 
     }
+
 }

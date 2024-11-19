@@ -1,10 +1,17 @@
 package co.edu.uniquindio.poo.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.poo.app.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class EmpleadoController {
 
@@ -44,6 +51,16 @@ public class EmpleadoController {
     @FXML
     void gestionarVehiculosAccion(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión Vehiculos");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

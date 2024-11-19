@@ -235,7 +235,6 @@ public class GestionarEmpleadosController {
         iDColumna.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         estadoColumna.setCellValueFactory(new PropertyValueFactory<>("activo"));
-        estadoColumna.setCellValueFactory(new PropertyValueFactory<>("activo"));
         estadoColumna.setCellFactory(column -> {
             return new TableCell<Empleado, Boolean>() {
                 @Override

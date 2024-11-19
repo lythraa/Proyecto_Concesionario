@@ -141,6 +141,15 @@ public class GestionarVehiculosController {
         }
     }
 
+    private void mostrarInfoAdicional(Vehiculo vehiculoSeleccionado) {
+        if (vehiculoSeleccionado == null) {
+            return;
+        }
+        String infoAdicional = vehiculoSeleccionado.toString();
+    
+        informacionAdicionalText.setText(infoAdicional);
+    }
+
     @FXML
     void ImagenAnteriorAccion(ActionEvent event) {
 
@@ -200,6 +209,12 @@ public class GestionarVehiculosController {
         modeloColumna.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         precioporDiaColumna.setCellValueFactory(new PropertyValueFactory<>("precio por dia"));
         precioColumna.setCellValueFactory(new PropertyValueFactory<>("precio"));
+
+        vehiculosTabla.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                mostrarInfoAdicional(newValue);
+            }
+        });
 
         assert atrasButton != null
                 : "fx:id=\"atrasButton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";

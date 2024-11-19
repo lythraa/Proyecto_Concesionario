@@ -130,4 +130,13 @@ public abstract class Vehiculo {
         this.matricula = matricula;
     }
 
+    @Override
+    public String toString() {
+        return "Vehiculo [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", esNuevo=" + esNuevo
+                + ", numeroCambios=" + numeroCambios + ", velocidadMaxima=" + velocidadMaxima + ", cilindraje="
+                + cilindraje + ", precio=" + precio + ", precioDia=" + precioDia + ", disponibilidad=" + disponibilidad
+                + ", transmision=" + transmision + ", combustible=" + combustible + "]";
+    }
+
+    
 }

@@ -7,7 +7,14 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Bus;
+import co.edu.uniquindio.poo.model.Camiones;
 import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Deportivo;
+import co.edu.uniquindio.poo.model.PickUp;
+import co.edu.uniquindio.poo.model.SUV;
+import co.edu.uniquindio.poo.model.Sedan;
+import co.edu.uniquindio.poo.model.Van;
 import co.edu.uniquindio.poo.model.Vehiculo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +26,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GestionarVehiculosController {
@@ -72,7 +79,7 @@ public class GestionarVehiculosController {
     private ImageView imagenVehiculo3;
 
     @FXML
-    private TextArea informacionAdicionalTexto;
+    private Text informacionAdicionalText;
 
     @FXML
     private TableColumn<Vehiculo, String> matriculaColumna;
@@ -140,6 +147,32 @@ public class GestionarVehiculosController {
         }
     }
 
+    private void mostrarInfoAdicional(Vehiculo vehiculoSeleccionado) {
+        if (vehiculoSeleccionado == null) {
+            return;
+        }
+        String infoAdicional = "";
+
+        // Verificar el tipo de vehículo y llamar a toString()
+        if (vehiculoSeleccionado instanceof Sedan) {
+            infoAdicional = ((Sedan) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof SUV) {
+            infoAdicional = ((SUV) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Deportivo) {
+            infoAdicional = ((Deportivo) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof PickUp) {
+            infoAdicional = ((PickUp) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Camiones) {
+            infoAdicional = ((Camiones) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Van) {
+            infoAdicional = ((Van) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Bus) {
+            infoAdicional = ((Bus) vehiculoSeleccionado).toString();
+        }
+
+        informacionAdicionalText.setText(infoAdicional);
+    }
+
     @FXML
     void ImagenAnteriorAccion(ActionEvent event) {
 
@@ -169,7 +202,7 @@ public class GestionarVehiculosController {
     @FXML
     void eliminarVehiculoAccion(ActionEvent event) {
         Vehiculo vehiculoSelecconado = vehiculosTabla.getSelectionModel().getSelectedItem();
-        
+
         if (vehiculoSelecconado == null) {
             InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
             return;
@@ -184,12 +217,11 @@ public class GestionarVehiculosController {
 
         vehiculosTabla.getItems().setAll(concesionario.getListaVehiculos());
     }
-    
+
     @FXML
     void recargarAccion(ActionEvent event) {
         cargarTabla();
     }
-
 
     @FXML
     void initialize() {
@@ -199,6 +231,12 @@ public class GestionarVehiculosController {
         modeloColumna.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         precioporDiaColumna.setCellValueFactory(new PropertyValueFactory<>("precio por dia"));
         precioColumna.setCellValueFactory(new PropertyValueFactory<>("precio"));
+
+        vehiculosTabla.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                mostrarInfoAdicional(newValue);
+            }
+        });
 
         assert atrasButton != null
                 : "fx:id=\"atrasButton\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
@@ -218,7 +256,7 @@ public class GestionarVehiculosController {
                 : "fx:id=\"imagenVehiculo2\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert imagenVehiculo3 != null
                 : "fx:id=\"imagenVehiculo3\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert informacionAdicionalTexto != null
+        assert informacionAdicionalText != null
                 : "fx:id=\"informacionAdicionalTexto\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert marcaColumna != null
                 : "fx:id=\"marcaColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";

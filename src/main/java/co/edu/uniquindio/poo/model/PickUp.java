@@ -33,4 +33,22 @@ public class PickUp extends Carro {
     public void setCapacidadCajaDeCarga(double capacidadCajaDeCarga) {
         this.capacidadCajaDeCarga = capacidadCajaDeCarga;
     }
+
+    @Override
+    public String toString() {
+        return "PickUp [es4x4=" + es4x4 + ", capacidadCajaDeCarga=" + capacidadCajaDeCarga + ", isEs4x4()=" + isEs4x4()
+                + ", getMarca()=" + getMarca() + ", getCapacidadCajaDeCarga()=" + getCapacidadCajaDeCarga()
+                + ", getModelo()=" + getModelo() + ", isEsNuevo()=" + isEsNuevo() + ", getNumeroDePasajeros()="
+                + getNumeroDePasajeros() + ", getNumeroCambios()=" + getNumeroCambios() + ", getVelocidadMaxima()="
+                + getVelocidadMaxima() + ", getCilindraje()=" + getCilindraje() + ", getNúmeroDePuertas()="
+                + getNúmeroDePuertas() + ", getPrecio()=" + getPrecio() + ", isDisponibilidad()=" + isDisponibilidad()
+                + ", getCapacidadDelMaletero()=" + getCapacidadDelMaletero() + ", getTransmision()=" + getTransmision()
+                + ", getCombustible()=" + getCombustible() + ", isTieneAireAcondicionado()="
+                + isTieneAireAcondicionado() + ", isTieneCámaraDeReversa()=" + isTieneCámaraDeReversa()
+                + ", getClass()=" + getClass() + ", getNúmeroDeBolsasDeAire()=" + getNúmeroDeBolsasDeAire()
+                + ", getPrecioDia()=" + getPrecioDia() + ", isTieneABS()=" + isTieneABS() + ", getMatricula()="
+                + getMatricula() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + "]";
+    }
+
+    
 }

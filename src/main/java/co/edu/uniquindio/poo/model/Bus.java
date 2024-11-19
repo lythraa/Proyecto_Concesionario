@@ -34,4 +34,21 @@ public class Bus extends Carro {
         this.númeroDeSalidasDeEmergencia = númeroDeSalidasDeEmergencia;
     }
 
+    @Override
+    public String toString() {
+        return "Bus [númeroDeEjes=" + númeroDeEjes + ", númeroDeSalidasDeEmergencia=" + númeroDeSalidasDeEmergencia
+                + ", getNúmeroDeEjes()=" + getNúmeroDeEjes() + ", getMarca()=" + getMarca() + ", getModelo()="
+                + getModelo() + ", getNúmeroDeSalidasDeEmergencia()=" + getNúmeroDeSalidasDeEmergencia()
+                + ", isEsNuevo()=" + isEsNuevo() + ", getNumeroDePasajeros()=" + getNumeroDePasajeros()
+                + ", getNumeroCambios()=" + getNumeroCambios() + ", getVelocidadMaxima()=" + getVelocidadMaxima()
+                + ", getCilindraje()=" + getCilindraje() + ", getNúmeroDePuertas()=" + getNúmeroDePuertas()
+                + ", getPrecio()=" + getPrecio() + ", isDisponibilidad()=" + isDisponibilidad()
+                + ", getCapacidadDelMaletero()=" + getCapacidadDelMaletero() + ", getTransmision()=" + getTransmision()
+                + ", getCombustible()=" + getCombustible() + ", isTieneAireAcondicionado()="
+                + isTieneAireAcondicionado() + ", isTieneCámaraDeReversa()=" + isTieneCámaraDeReversa()
+                + ", getClass()=" + getClass() + ", getNúmeroDeBolsasDeAire()=" + getNúmeroDeBolsasDeAire()
+                + ", getPrecioDia()=" + getPrecioDia() + ", isTieneABS()=" + isTieneABS() + ", getMatricula()="
+                + getMatricula() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + "]";
+    }
+
 }

@@ -320,6 +320,7 @@ public class RegistrarVehiculoController {
                         precio, precioDiaAlquiler, true, tipo, tipoCombustible, 0, 0, tiempo100KmH, false, false, 0,
                         false, 0, caballosFuerza);
                 concesionario.añadirVehiculo(deportivo);
+                limpiarCamposYCombos();
 
             } else {
                 // carros
@@ -349,6 +350,7 @@ public class RegistrarVehiculoController {
                             tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero,
                             tieneSensoresColision, tieneAsistenciaCarril, es4x4);
                     concesionario.añadirVehiculo(sedan);
+                    limpiarCamposYCombos();
 
                 } else if (tipoVehiculo.equals("SUV")) {
                     // Atributos específicos para un SUV
@@ -364,16 +366,19 @@ public class RegistrarVehiculoController {
                             numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision,
                             tieneVelocidadCrucero, tieneAsistenciaCarril, es4x4);
                     concesionario.añadirVehiculo(suv);
+                    limpiarCamposYCombos();
 
                 } else if (tipoVehiculo.equals("PickUp")) {
                     double capacidadCarga = Double.parseDouble(CapacidadCargaPickUpCampo.getText());
                     es4x4 = Es4x4PickUpCombo.getValue().equals("Sí");
+                    limpiarCamposYCombos();
 
                     PickUp pickUp = new PickUp(matricula, marca, modelo, tieneSensorTraficoCruzado, numPasajeros,
                             capacidadCarga, cilindraje, precio, precioDiaAlquiler, tieneVelocidadCrucero, tipo,
                             tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado,
                             tieneAsistenciaCarril, numPasajeros, TieneAbsCombo, es4x4, capacidadCarga);
                     concesionario.añadirVehiculo(pickUp);
+                    limpiarCamposYCombos();
 
                 } else if (tipoVehiculo.equals("Camión")) {
                     int numEjes = Integer.parseInt(NumEjesBusCampo.getText());
@@ -385,6 +390,7 @@ public class RegistrarVehiculoController {
                             numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAbs,
                             numPasajeros, tieneAbs, numEjes, tiempoCarga);
                     concesionario.añadirVehiculo(camion);
+                    limpiarCamposYCombos();
 
                 } else if (tipoVehiculo.equals("Van")) {
                     boolean esLinda = EsLindaVanCombo.getValue().equals("Sí");
@@ -394,6 +400,7 @@ public class RegistrarVehiculoController {
                             tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado,
                             es4x4, numPasajeros, TieneAbsCombo, esLinda);
                     concesionario.añadirVehiculo(van);
+                    limpiarCamposYCombos();
 
                 } else if (tipoVehiculo.equals("Bus")) {
 
@@ -405,11 +412,12 @@ public class RegistrarVehiculoController {
                             numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4,
                             numSalidasEmergencia, TieneAbsCombo, numeroDeEjes, numeroDeEjes);
                     concesionario.añadirVehiculo(bus);
+                    limpiarCamposYCombos();
 
                 }
             }
         } else {
-            System.out.println("Por favor, seleccione un tipo de vehículo.");
+            InicioSesionController.mostrarAlerta("Alerta", "Por favor, seleccione un tipo de vehículo.");
         }
     }
 
@@ -441,6 +449,65 @@ public class RegistrarVehiculoController {
             }
         }
     }
+
+    public void limpiarCamposYCombos() {
+        TieneSensoresColisionSedanCombo.getSelectionModel().clearSelection();
+        EsUsadoCombo.getSelectionModel().clearSelection();
+        TieneSensorTraficoCruzadoSedanCombo.getSelectionModel().clearSelection();
+        TieneAbsCarroCombo.getSelectionModel().clearSelection();
+        EsHibridoLigeroCombo.getSelectionModel().clearSelection();
+        EsLindaVanCombo.getSelectionModel().clearSelection();
+        TieneAireAcondicionadoCarroCombo.getSelectionModel().clearSelection();
+        Es4x4PickUpCombo.getSelectionModel().clearSelection();
+        tipoCombustibleCombo.getSelectionModel().clearSelection();
+        TieneVelocidadCruceroSUVCombo.getSelectionModel().clearSelection();
+        TieneSensoresColisionSUVCombo.getSelectionModel().clearSelection();
+        tipoVehiculoCombo.getSelectionModel().clearSelection();
+        TieneVelocidadCruceroSedanCombo.getSelectionModel().clearSelection();
+        TieneAsistenciaPermanenciaCarrilSedanCombo.getSelectionModel().clearSelection();
+        TieneSensorTraficoCruzadoSUVCombo.getSelectionModel().clearSelection();
+        TieneAsistenciaPermanenciaCarrilSUVCombo.getSelectionModel().clearSelection();
+        esEnchufableCombo.getSelectionModel().clearSelection();
+        transmisionCombo.getSelectionModel().clearSelection();
+        Es4x4SUVCombo.getSelectionModel().clearSelection();
+        TieneCamaraReversaCarroCombo.getSelectionModel().clearSelection();
+    
+        // Limpiar los TextFields (ponerlos vacíos)
+        TiempoAlcanzar100KmHDeportivoCampo.clear();
+        NumcaballosFuerzaDeportivoCampo.clear();
+        tiempoCargaCampo.clear();
+        NumEjesBusCampo.clear();
+        cilindrajeCampo.clear();
+        NumcaballosFuerzaCamionCampo.clear();
+        NumPasajerosCarroCampo.clear();
+        CapacidadMaleteroCarroCampo.clear();
+        CapacidadCargaPickUpCampo.clear();
+        NumBolsasCarroCampo.clear();
+        numeroCambiosCampo.clear();
+        NumPuertasCarroCampo.clear();
+        marcaCampo.clear();
+        precioDiaAlquilerCampo.clear();
+        matriculaCampo.clear();
+        NumSalidasEmergenciaBusCampo.clear();
+        precioCampo.clear();
+        valocidadMaximaCampo.clear();
+        autonomiaCampo.clear();
+        modeloCampo.clear();
+        TiempoAlcanzar100KmHCamionCampo.clear();
+    
+        deportivoPanel.setVisible(false);
+        pickUpPanel.setVisible(false);
+        InformacionAdicionalPanel.setVisible(false);
+        sedanPanel.setVisible(false);
+        camionPanel.setVisible(false);
+        carroPanel.setVisible(false);
+        busPanel.setVisible(false);
+        VanPanel.setVisible(false);
+        combustibleHibridoPanel.setVisible(false);
+        combustibleElectricoPanel.setVisible(false);
+        SUVPanel.setVisible(false);
+    }
+    
 
     @FXML
     void initialize() {

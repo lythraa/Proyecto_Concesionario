@@ -31,4 +31,9 @@ public class CombustibleHibrido extends Combustible {
         this.esHibridoLigero = esHibridoLigero;
     }
 
+    @Override
+    public String toString() {
+        return "CombustibleHibrido [esEnchufable=" + esEnchufable + ", esHibridoLigero=" + esHibridoLigero + "]";
+    }
+
 }

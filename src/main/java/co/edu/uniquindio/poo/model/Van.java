@@ -24,4 +24,19 @@ public class Van extends Carro {
         this.esLinda = esLinda;
     }
 
+    @Override
+    public String toString() {
+        return "Van [esLinda=" + esLinda + ", isEsLinda()=" + isEsLinda() + ", getMarca()=" + getMarca()
+                + ", getModelo()=" + getModelo() + ", isEsNuevo()=" + isEsNuevo() + ", getNumeroDePasajeros()="
+                + getNumeroDePasajeros() + ", getNumeroCambios()=" + getNumeroCambios() + ", getVelocidadMaxima()="
+                + getVelocidadMaxima() + ", getCilindraje()=" + getCilindraje() + ", getNúmeroDePuertas()="
+                + getNúmeroDePuertas() + ", getPrecio()=" + getPrecio() + ", isDisponibilidad()=" + isDisponibilidad()
+                + ", getCapacidadDelMaletero()=" + getCapacidadDelMaletero() + ", getTransmision()=" + getTransmision()
+                + ", getCombustible()=" + getCombustible() + ", isTieneAireAcondicionado()="
+                + isTieneAireAcondicionado() + ", isTieneCámaraDeReversa()=" + isTieneCámaraDeReversa()
+                + ", getClass()=" + getClass() + ", getNúmeroDeBolsasDeAire()=" + getNúmeroDeBolsasDeAire()
+                + ", getPrecioDia()=" + getPrecioDia() + ", isTieneABS()=" + isTieneABS() + ", getMatricula()="
+                + getMatricula() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + "]";
+    }
+
 }

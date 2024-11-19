@@ -1,10 +1,21 @@
 package co.edu.uniquindio.poo.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.app.App;
+import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Empleado;
+import co.edu.uniquindio.poo.model.Vehiculo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
@@ -14,8 +25,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class GestionarVehiculosController {
+
+    private Concesionario concesionario = Concesionario.getInstancia();
 
     @FXML
     private ResourceBundle resources;
@@ -54,7 +68,7 @@ public class GestionarVehiculosController {
     private Button imagenSiguienteBoton;
 
     @FXML
-    private TableView<?> vehiculosTabla;
+    private TableView<Vehiculo> vehiculosTabla;
 
     @FXML
     private TableColumn<?, ?> marcaColumna;
@@ -82,7 +96,31 @@ public class GestionarVehiculosController {
     
     @FXML
     void atrasAccion(ActionEvent event) {
-
+        if (Rol.ADMIN.equals(Sesion.getRol())) {
+            FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = App.getStage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Vista Administrador");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        } else {
+            FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = App.getStage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Vista Empleado");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
     }
 
     @FXML
@@ -107,8 +145,23 @@ public class GestionarVehiculosController {
 
     @FXML
     void eliminarVehiculoAccion(ActionEvent event) {
+        Vehiculo vehiculoSelecconado = vehiculosTabla.getSelectionModel().getSelectedItem();
+        if (vehiculoSelecconado == null) {
+            InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
+            return;
+        }
 
+        concesionario.eliminarVehiculo(vehiculoSelecconado);
+        InicioSesionController.mostrarAlertaInfo("Eliminado con exito");
+        cargarTabla();
     }
+    
+    private void cargarTabla(){
+
+    vehiculosTabla.getItems().setAll(concesionario.getListaVehiculos());
+    }
+
+
 
     @FXML
     void initialize() {

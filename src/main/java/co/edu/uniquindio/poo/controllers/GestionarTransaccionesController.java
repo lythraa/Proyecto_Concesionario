@@ -260,6 +260,7 @@ public class GestionarTransaccionesController {
 
         @FXML
         void initialize() {
+                cargarTabla();
                 tipoTransaccionCombo.getItems().setAll(TipoTransaccion.values());
                 tipoTransaccionCombo.setValue(TipoTransaccion.VENTA);
                 revisionTecnicaCombo.getItems().setAll("TIENE REVISIÓN TECNICA", "NO TIENE REVISIÓN TECNICA");

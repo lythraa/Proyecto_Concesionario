@@ -16,13 +16,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -44,7 +44,7 @@ public class GestionarClientesController {
     private TableView<Cliente> vehiculosTabla;
 
     @FXML
-    private TextField clienteEmailCampo;
+    private TextField clienteContactoCampo;
 
     @FXML
     private TableColumn<Cliente, String> iDColumna;
@@ -108,33 +108,34 @@ public class GestionarClientesController {
 
     @FXML
     void buscarAccion(ActionEvent event) {
-        if (!busquedaNombreOrIDCampo.getText().equals(null)) {
-            Cliente clienteaux = concesionario.buscarCliente(busquedaNombreOrIDCampo.getText());
-            if (clienteaux != null) {
-                
-            }
-        }
-        String busqueda = busquedaNombreOrIDCampo.getText();
+        String textoBusqueda = busquedaNombreOrIDCampo.getText().toLowerCase().trim();
 
-        if (busqueda.isEmpty()) {
-            System.out.println("Por favor, introduce un ID o nombre para buscar.");
+        if (textoBusqueda.isEmpty()) {
+            cargarTablaClientes();
             return;
         }
 
-        LinkedList<Cliente> listaClientes = Concesionario.getInstancia().getListaClientes();
-        LinkedList<Cliente> resultados = new LinkedList<>();
-
-        for (Cliente cliente : listaClientes) {
-            if (cliente.getIdCliente().equalsIgnoreCase(busqueda) ||
-                    cliente.getNombre().equalsIgnoreCase(busqueda)) {
-                resultados.add(cliente);
+        ObservableList<Cliente> clientesFiltrados = FXCollections.observableArrayList();
+        for (Cliente cliente : concesionario.getListaClientes()) {
+            if (cliente.getIdCliente().toLowerCase().contains(textoBusqueda) ||
+                    cliente.getNombre().toLowerCase().contains(textoBusqueda)) {
+                clientesFiltrados.add(cliente);
             }
         }
 
-        if (resultados.isEmpty()) {
-            System.out.println("No se encontraron resultados.");
-        } else {
-            vehiculosTabla.getItems().setAll(resultados);
+        vehiculosTabla.setItems(FXCollections.observableArrayList(concesionario.getListaClientes())); // Convierte a
+                                                                                                      // ObservableList
+        vehiculosTabla.getSelectionModel().clearSelection(); // Limpia la selección previa
+
+        if (!clientesFiltrados.isEmpty()) {
+            for (Cliente cliente : clientesFiltrados) {
+                for (int i = 0; i < vehiculosTabla.getItems().size(); i++) {
+                    if (vehiculosTabla.getItems().get(i).equals(cliente)) {
+                        vehiculosTabla.getSelectionModel().select(i);
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -154,16 +155,18 @@ public class GestionarClientesController {
 
     @FXML
     void añadirClienteAccion(ActionEvent event) {
-        if (RegistrarAdministradorController.validarTextFields(clienteCedulaCampo, clienteEmailCampo, clienteNombreCampo)) {
-            Cliente cliente = new Cliente(clienteCedulaCampo.getText(), clienteNombreCampo.getText(), clienteEmailCampo.getText());
+        if (RegistrarAdministradorController.validarTextFields(clienteCedulaCampo, clienteContactoCampo,
+                clienteNombreCampo)) {
+            Cliente cliente = new Cliente(clienteCedulaCampo.getText(), clienteNombreCampo.getText(),
+                    clienteContactoCampo.getText());
             concesionario.añadirCliente(cliente);
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setTitle("Alerta");
             alerta.setContentText("Creado con exito");
             alerta.showAndWait();
-        }else{
+        } else {
             InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
-    }
+        }
         limpiarCampos();
         cargarTablaClientes();
     }
@@ -171,19 +174,19 @@ public class GestionarClientesController {
     private void limpiarCampos() {
         clienteNombreCampo.clear();
         clienteCedulaCampo.clear();
-        clienteEmailCampo.clear();
+        clienteContactoCampo.clear();
     }
 
     @FXML
     void initialize() {
         iDColumna.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        contactoColumna.setCellValueFactory(new PropertyValueFactory<>("email"));
+        contactoColumna.setCellValueFactory(new PropertyValueFactory<>("contacto"));
         assert añadirClienteBoton != null
                 : "fx:id=\"añadirClienteBoton\" was not injected: check your FXML file 'gestionarClientesView.fxml'.";
         assert vehiculosTabla != null
                 : "fx:id=\"vehiculosTabla\" was not injected: check your FXML file 'gestionarClientesView.fxml'.";
-        assert clienteEmailCampo != null
+        assert clienteContactoCampo != null
                 : "fx:id=\"clienteEmailCampo\" was not injected: check your FXML file 'gestionarClientesView.fxml'.";
         assert iDColumna != null
                 : "fx:id=\"iDColumna\" was not injected: check your FXML file 'gestionarClientesView.fxml'.";

@@ -170,4 +170,226 @@ public class Concesionario {
         }
         return null;    
     }
+
+    // CRUD Vehículo
+
+    /**
+     * Añadir Vehículo
+     * 
+     * @param vehiculo
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String añadirVehiculo(Vehiculo vehiculo) throws IllegalArgumentException {
+        String mensaje = "Se añadió correctamente";
+        if (vehiculo == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+        listaVehiculos.add(vehiculo);
+        return mensaje;
+    }
+
+    /**
+     * Eliminar Vehículo
+     * 
+     * @param vehiculo
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String eliminarVehiculo(Vehiculo vehiculo) throws IllegalArgumentException {
+        String mensaje = "Se eliminó correctamente";
+        if (vehiculo == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+        if (!listaVehiculos.contains(vehiculo)) {
+            mensaje = "No se encuentra en la lista";
+        }
+        listaVehiculos.remove(vehiculo);
+        return mensaje;
+    }
+
+    /**
+     * Buscar Vehículo por matrícula
+     * 
+     * @param matricula
+     * @return
+     */
+    public Vehiculo buscarVehiculo(String matricula) {
+        return listaVehiculos.stream()
+                .filter(vehiculoAux -> vehiculoAux.getMatricula().equals(matricula))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * Editar Vehículo, borra uno y añade el nuevo
+     * 
+     * @param vehiculo
+     * @param nuevoVehiculo
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String editarVehiculo(Vehiculo vehiculo, Vehiculo nuevoVehiculo) throws IllegalArgumentException {
+        String mensaje = "Editado correctamente";
+
+        if (vehiculo == null || nuevoVehiculo == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+
+        if (!listaVehiculos.contains(vehiculo)) {
+            mensaje = "No se encuentra en la lista";
+        }
+
+        listaVehiculos.remove(vehiculo);
+        listaVehiculos.add(nuevoVehiculo);
+        return mensaje;
+    }
+
+    // CRUD Cliente
+
+    /**
+     * Añadir Cliente
+     * 
+     * @param cliente
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String añadirCliente(Cliente cliente) throws IllegalArgumentException {
+        String mensaje = "Se añadió correctamente";
+        if (cliente == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+        listaClientes.add(cliente);
+        return mensaje;
+    }
+
+    /**
+     * Eliminar Cliente
+     * 
+     * @param cliente
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String eliminarCliente(Cliente cliente) throws IllegalArgumentException {
+        String mensaje = "Se eliminó correctamente";
+        if (cliente == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+        if (!listaClientes.contains(cliente)) {
+            mensaje = "No se encuentra en la lista";
+        }
+        listaClientes.remove(cliente);
+        return mensaje;
+    }
+
+    /**
+     * Buscar Cliente por id
+     * 
+     * @param cedula
+     * @return
+     */
+    public Cliente buscarCliente(String cedula) {
+        return listaClientes.stream().filter(clienteaux -> clienteaux.getIdCliente().equals(cedula)).findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * Editar cliente, borra uno y añade el nuevo
+     * 
+     * @param cliente
+     * @param nuevoCliente
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String editarCliente(Cliente cliente, Cliente nuevoCliente) throws IllegalArgumentException {
+        String mensaje = "editado correctamente";
+
+        if (cliente == null || nuevoCliente == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+
+        if (!listaClientes.contains(cliente)) {
+            mensaje = "No se encuentra en la lista";
+        }
+
+        listaClientes.remove(cliente);
+        listaClientes.add(nuevoCliente);
+        return mensaje;
+    }
+
+    // CRUD Reporte
+
+    /**
+     * Añadir Reporte
+     * 
+     * @param reporte
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String añadirReporte(Reporte reporte) throws IllegalArgumentException {
+        String mensaje = "Se añadió correctamente";
+        if (reporte == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+        listaReportes.add(reporte);
+        return mensaje;
+    }
+
+    /**
+     * Eliminar Reporte
+     * 
+     * @param reporte
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String eliminarReporte(Reporte reporte) throws IllegalArgumentException {
+        String mensaje = "Se eliminó correctamente";
+        if (reporte == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+        if (!listaReportes.contains(reporte)) {
+            mensaje = "No se encuentra en la lista";
+        }
+        listaReportes.remove(reporte);
+        return mensaje;
+    }
+
+    /**
+     * Buscar Reporte por id
+     * 
+     * @param id
+     * @return
+     */
+    public Reporte buscarReporte(String id) {
+        return listaReportes.stream()
+                .filter(reporteAux -> reporteAux.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * Editar Reporte, borra uno y añade el nuevo
+     * 
+     * @param reporte
+     * @param nuevoReporte
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public String editarReporte(Reporte reporte, Reporte nuevoReporte) throws IllegalArgumentException {
+        String mensaje = "Editado correctamente";
+
+        if (reporte == null || nuevoReporte == null) {
+            throw new IllegalArgumentException("No se aceptan objetos nulos");
+        }
+
+        if (!listaReportes.contains(reporte)) {
+            mensaje = "No se encuentra en la lista";
+        }
+
+        listaReportes.remove(reporte);
+        listaReportes.add(nuevoReporte);
+        return mensaje;
+    }
+
+
 }

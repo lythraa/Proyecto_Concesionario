@@ -5,11 +5,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Empleado;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class GestionarClientesController {
+    private Concesionario concesionario = Concesionario.getInstancia();
 
     @FXML
     private ResourceBundle resources;
@@ -91,7 +99,12 @@ public class GestionarClientesController {
 
     @FXML
     void buscarAccion(ActionEvent event) {
-
+        if (!busquedaNombreOrIDCampo.getText().equals(null)) {
+            Cliente clienteaux = concesionario.buscarCliente(busquedaNombreOrIDCampo.getText());
+            if (clienteaux != null) {
+                
+            }
+        }
     }
 
     @FXML
@@ -101,7 +114,16 @@ public class GestionarClientesController {
 
     @FXML
     void añadirClienteAccion(ActionEvent event) {
-
+        if (RegistrarAdministradorController.validarTextFields(clienteCedulaCampo, clienteEmailCampo, clienteNombreCampo)) {
+            Cliente cliente = new Cliente(clienteCedulaCampo.getText(), clienteNombreCampo.getText(), clienteEmailCampo.getText());
+            concesionario.añadirCliente(cliente);
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setTitle("Alerta");
+            alerta.setContentText("Creado con exito");
+            alerta.showAndWait();
+        }else{
+            InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
+    }
     }
 
     @FXML

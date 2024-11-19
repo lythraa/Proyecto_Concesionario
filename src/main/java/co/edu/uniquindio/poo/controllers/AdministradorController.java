@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.app.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,18 +41,16 @@ public class AdministradorController {
 
     @FXML
     void gestionarClientesAccion(ActionEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("co/edu/uniquindio/gestionarClientesView.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = (Stage) cerrarSesionBoton.getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Gestión clientes");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/gestionarClientesView.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = App.getStage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Gestión clientes");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     @FXML

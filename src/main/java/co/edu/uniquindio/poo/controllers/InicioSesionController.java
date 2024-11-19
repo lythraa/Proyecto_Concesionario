@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
 import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Concesionario;
@@ -61,20 +62,21 @@ public class InicioSesionController {
                         getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) iniciarSesionBoton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Vista administrador");
                     stage.show();
                     Sesion.setRol(Rol.ADMIN);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                } 
+                return;
             }
             if (empleado instanceof Empleado) {
                 FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
                 try {
                     Parent root = loader1.load();
-                    Stage stage = (Stage) iniciarSesionBoton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Vista empleado");
                     stage.show();
@@ -108,7 +110,7 @@ public class InicioSesionController {
     }
 
 
-    private static void mostrarAlerta( String titulo, String mensaje) {
+    public static void mostrarAlerta( String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);

@@ -106,9 +106,39 @@ public class GestionarClientesController {
     }
 
     @FXML
-    void buscarAccion(ActionEvent event) {
-        
+void buscarAccion(ActionEvent event) {
+    String textoBusqueda = busquedaNombreOrIDCampo.getText().toLowerCase().trim();
+
+    if (textoBusqueda.isEmpty()) {
+        cargarTablaClientes();
+        return;
     }
+
+    ObservableList<Cliente> clientesFiltrados = FXCollections.observableArrayList();
+    for (Cliente cliente : concesionario.getListaClientes()) {
+        if (cliente.getIdCliente().toLowerCase().contains(textoBusqueda) ||
+            cliente.getNombre().toLowerCase().contains(textoBusqueda)) {
+            clientesFiltrados.add(cliente);
+        }
+    }
+
+    vehiculosTabla.setItems(FXCollections.observableArrayList(concesionario.getListaClientes())); // Convierte a ObservableList
+    vehiculosTabla.getSelectionModel().clearSelection(); // Limpia la selección previa
+
+    if (!clientesFiltrados.isEmpty()) {
+        for (Cliente cliente : clientesFiltrados) {
+            for (int i = 0; i < vehiculosTabla.getItems().size(); i++) {
+                if (vehiculosTabla.getItems().get(i).equals(cliente)) {
+                    vehiculosTabla.getSelectionModel().select(i);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
+
 
     @FXML
     void eliminarAccion(ActionEvent event) {

@@ -55,7 +55,7 @@ public class GestionarVehiculosController {
     private ImageView imagenVehiculo1;
 
     @FXML
-    private TableColumn<Vehiculo, String> precioColumna;
+    private TableColumn<Vehiculo, Double> precioColumna;
 
     @FXML
     private ImageView imagenVehiculo2;
@@ -82,7 +82,7 @@ public class GestionarVehiculosController {
     private Button buscarBoton;
 
     @FXML
-    private TableColumn<Vehiculo, String> precioporDiaColumna;
+    private TableColumn<Vehiculo, Double> precioporDiaColumna;
 
     @FXML
     private Button imagenAnteriorBoton;

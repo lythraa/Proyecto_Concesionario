@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 
 public class GestionarTransaccionesController {
 
+
+
     @FXML
     private ResourceBundle resources;
 
@@ -38,8 +40,6 @@ public class GestionarTransaccionesController {
     @FXML
     private VBox alquilarPanel;
 
-    @FXML
-    private ComboBox<?> atributoABuscarCombo;
 
     @FXML
     private TextField ClienteIDCampo;
@@ -109,20 +109,13 @@ public class GestionarTransaccionesController {
                 stage.setScene(new Scene(root));
                 stage.setTitle("Vista Administrador");
                 stage.show();
+                return;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-
-
-
-
-
-
-
-
-
             
+        } else {
+   
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
             try {
@@ -155,15 +148,26 @@ public class GestionarTransaccionesController {
     }
 
     @FXML
+    private Button recargarBoton;
+
+
+    @FXML
+    void recargarAccion(ActionEvent event) {
+        
+    }
+
+
+
+    @FXML
     void initialize() {
+        assert recargarBoton != null : "fx:id=\"recargarBoton\" was not injected: check your FXML file 'reportesView.fxml'.";
         assert busquedaCampo != null
                 : "fx:id=\"busquedaCampo\" was not injected: check your FXML file 'gestionarTransaccionesView.fxml'.";
         assert paginacionTabla != null
                 : "fx:id=\"paginacionTabla\" was not injected: check your FXML file 'gestionarTransaccionesView.fxml'.";
         assert alquilarPanel != null
                 : "fx:id=\"alquilarPanel\" was not injected: check your FXML file 'gestionarTransaccionesView.fxml'.";
-        assert atributoABuscarCombo != null
-                : "fx:id=\"atributoABuscarCombo\" was not injected: check your FXML file 'gestionarTransaccionesView.fxml'.";
+
         assert ClienteIDCampo != null
                 : "fx:id=\"ClienteIDCampo\" was not injected: check your FXML file 'gestionarTransaccionesView.fxml'.";
         assert eliminarBoton != null

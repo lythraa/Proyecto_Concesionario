@@ -22,7 +22,7 @@ public class AdministradorController {
     private URL location;
 
     @FXML
-    private Button historialTransaccionesBoton;
+    private Button gestionarReportesBoton;
 
     @FXML
     private Button gestionarEmpleadosBoton1;
@@ -31,7 +31,7 @@ public class AdministradorController {
     private Button cerrarSesionBoton;
 
     @FXML
-    private Button realizarTransaccionBoton;
+    private Button gestionarTransaccionesBoton;
 
     @FXML
     private Button gestionarClientesBoton;
@@ -42,92 +42,111 @@ public class AdministradorController {
     @FXML
     void gestionarClientesAccion(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/gestionarClientesView.fxml"));
-            try {
-                Parent root = loader.load();
-                Stage stage = App.getStage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Gestión clientes");
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión clientes");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void realizarTransaccionAccion(ActionEvent event) {
+    void gestionarTransaccionesAccion(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/gestionarTransaccionesView.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = App.getStage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Gestión transacciones");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                getClass().getResource("/co/edu/uniquindio/poo/gestionarTransaccionesView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión transacciones");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     @FXML
     void gestionarVehiculosAccion(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = App.getStage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Gestión Vehiculos");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                getClass().getResource("/co/edu/uniquindio/poo/gestionarVehiculosView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión Vehiculos");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void historialTransaccionesAccion(ActionEvent event) {
+    void gestionarReportesAccion(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/co/edu/uniquindio/poo/reportesView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inicio Sesión");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     void cerrarSesionAccion(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/inicioSesion.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = App.getStage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Inicio Sesión");
-                    stage.show();
-                    Sesion.setRol(null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                getClass().getResource("/co/edu/uniquindio/poo/inicioSesion.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inicio Sesión");
+            stage.show();
+            Sesion.setRol(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void gestionarEmpleadosAccion(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/gestionarEmpleadosView.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = App.getStage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Gestión empleados");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                getClass().getResource("/co/edu/uniquindio/poo/gestionarEmpleadosView.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión empleados");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void initialize() {
-        assert historialTransaccionesBoton != null : "fx:id=\"historialTransaccionesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert gestionarEmpleadosBoton1 != null : "fx:id=\"gestionarEmpleadosBoton1\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert cerrarSesionBoton != null : "fx:id=\"cerrarSesionBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert realizarTransaccionBoton != null : "fx:id=\"realizarTransaccionBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert gestionarClientesBoton != null : "fx:id=\"gestionarClientesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
-        assert gestionarVehiculosBoton != null : "fx:id=\"gestionarVehiculosBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert cerrarSesionBoton != null
+                : "fx:id=\"cerrarSesionBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarClientesBoton != null
+                : "fx:id=\"gestionarClientesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarEmpleadosBoton1 != null
+                : "fx:id=\"gestionarEmpleadosBoton1\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarReportesBoton != null
+                : "fx:id=\"gestionarReportesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarTransaccionesBoton != null
+                : "fx:id=\"gestionarTransaccionesBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
+        assert gestionarVehiculosBoton != null
+                : "fx:id=\"gestionarVehiculosBoton\" was not injected: check your FXML file 'administradorView.fxml'.";
 
     }
 }

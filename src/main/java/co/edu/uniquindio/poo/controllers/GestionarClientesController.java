@@ -2,14 +2,12 @@ package co.edu.uniquindio.poo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Concesionario;
-import co.edu.uniquindio.poo.model.Empleado;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -177,11 +175,21 @@ public class GestionarClientesController {
     }
 
     @FXML
+    private Button recargarBoton;
+
+@FXML
+    void recargarAccion(ActionEvent event) {
+        cargarTablaClientes();
+    }
+
+
+    @FXML
     void initialize() {
         cargarTablaClientes();
         iDColumna.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         contactoColumna.setCellValueFactory(new PropertyValueFactory<>("contacto"));
+        assert recargarBoton != null : "fx:id=\"recargarBoton\" was not injected: check your FXML file 'reportesView.fxml'.";
         assert añadirClienteBoton != null
                 : "fx:id=\"añadirClienteBoton\" was not injected: check your FXML file 'gestionarClientesView.fxml'.";
         assert vehiculosTabla != null

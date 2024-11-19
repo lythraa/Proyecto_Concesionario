@@ -33,6 +33,7 @@
                <children>
                   <TextField fx:id="buscarEnTablaCampo" promptText="buscar" />
                   <Button fx:id="buscarBoton" mnemonicParsing="false" onAction="#buscarAccion" text="Filtrar" />
+                  <Button fx:id="recargarBoton" mnemonicParsing="false" onAction="#recargarAccion" text="Recargar" />
                </children>
             </HBox>
          </top>

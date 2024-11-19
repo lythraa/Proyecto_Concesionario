@@ -7,11 +7,9 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
-import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Empleado;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +45,9 @@ public class GestionarEmpleadosController {
 
     @FXML
     private Button añadirEmpleadoBoton;
+
+    @FXML
+    private Button añadirAdministradorBoton;
 
     @FXML
     private TableColumn<Empleado, String> emailColumna;
@@ -98,6 +99,27 @@ public class GestionarEmpleadosController {
 
     @FXML
     private Button atrasButton;
+
+    @FXML
+    void añadirAdministradorAccion(ActionEvent event) {
+
+        if (RegistrarAdministradorController.validarTextFields(EmpleadoCedulaCampo, EmpleadoContraseñaCampo,
+                EmpleadoEmailCampo, EmpleadoNombreCampo, EmpleadoUsuarioCampo)) {
+            Administrador empleado = new Administrador(EmpleadoCedulaCampo.getText(), EmpleadoNombreCampo.getText(), true,
+                    EmpleadoEmailCampo.getText(), EmpleadoUsuarioCampo.getText(), EmpleadoContraseñaCampo.getText());
+            concesionario.añadirEmpleado(empleado);
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setTitle("Alerta");
+            alerta.setContentText("Creado con exito");
+            alerta.showAndWait();
+        } else {
+            InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
+        }
+        limpiarCampos();
+        cargarTabla();
+
+    }
+    
 
     @FXML
     void atrasAccion(ActionEvent event) {
@@ -228,6 +250,16 @@ public class GestionarEmpleadosController {
     }
 
     @FXML
+    private Button recargarBoton;
+
+    @FXML
+    void recargarAccion(ActionEvent event) {
+        cargarTabla();
+    }
+
+
+
+    @FXML
     void initialize() {
         cargarTabla();
         emailColumna.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -248,6 +280,7 @@ public class GestionarEmpleadosController {
                 }
             };
         });
+        assert recargarBoton != null : "fx:id=\"recargarBoton\" was not injected: check your FXML file 'reportesView.fxml'.";
 
         assert estadoColumna != null
                 : "fx:id=\"estadoColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";

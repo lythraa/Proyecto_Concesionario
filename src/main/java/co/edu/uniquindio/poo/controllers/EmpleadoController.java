@@ -2,7 +2,6 @@ package co.edu.uniquindio.poo.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,19 +15,21 @@ public class EmpleadoController {
     private URL location;
 
     @FXML
-    private Button historialTransaccionesBoton;
-
-    @FXML
     private Button cerrarSesionBoton;
-
-    @FXML
-    private Button realizarTransaccionBoton;
 
     @FXML
     private Button gestionarClientesBoton;
 
     @FXML
+    private Button gestionarTransaccionesBoton;
+
+    @FXML
     private Button gestionarVehiculosBoton;
+
+    @FXML
+    void cerrarSesionAccion(ActionEvent event) {
+
+    }
 
     @FXML
     void gestionarClientesAccion(ActionEvent event) {
@@ -36,7 +37,7 @@ public class EmpleadoController {
     }
 
     @FXML
-    void realizarTransaccionAccion(ActionEvent event) {
+    void gestionarTransaccionesAccion(ActionEvent event) {
 
     }
 
@@ -46,22 +47,13 @@ public class EmpleadoController {
     }
 
     @FXML
-    void historialTransaccionesAccion(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cerrarSesionAccion(ActionEvent event) {
-
-    }
-
-    @FXML
     void initialize() {
-        assert historialTransaccionesBoton != null : "fx:id=\"historialTransaccionesBoton\" was not injected: check your FXML file 'empleadoView.fxml'.";
         assert cerrarSesionBoton != null : "fx:id=\"cerrarSesionBoton\" was not injected: check your FXML file 'empleadoView.fxml'.";
-        assert realizarTransaccionBoton != null : "fx:id=\"realizarTransaccionBoton\" was not injected: check your FXML file 'empleadoView.fxml'.";
         assert gestionarClientesBoton != null : "fx:id=\"gestionarClientesBoton\" was not injected: check your FXML file 'empleadoView.fxml'.";
+        assert gestionarTransaccionesBoton != null : "fx:id=\"gestionarTransaccionesBoton\" was not injected: check your FXML file 'empleadoView.fxml'.";
         assert gestionarVehiculosBoton != null : "fx:id=\"gestionarVehiculosBoton\" was not injected: check your FXML file 'empleadoView.fxml'.";
 
     }
+
 }
+

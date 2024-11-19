@@ -32,6 +32,8 @@ public abstract class Vehiculo {
         this.precioDia = precioDia;
     }
 
+
+
     public String getMarca() {
         return marca;
     }

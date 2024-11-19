@@ -29,6 +29,15 @@ public class Empleado implements Autenticable {
         this.listaVehiculos = concesionario.getListaVehiculos();
     }
 
+    
+    @Override
+    public String toString() {
+        return "Empleado [listaClientes=" + listaClientes + ", listaTransacciones=" + listaTransacciones
+                + ", listaVehiculos=" + listaVehiculos + ", id=" + id + ", nombre=" + nombre + ", activo=" + activo
+                + ", email=" + email + ", usuario=" + usuario + ", contraseña=" + contraseña + "]";
+    }
+
+
     public String getId() {
         return id;
     }
@@ -137,7 +146,6 @@ public class Empleado implements Autenticable {
      */
     public String comprarVehiculo(Vehiculo vehiculo,  Cliente cliente, LocalDate fecha, double precio, boolean revisionTecnica){
         if (revisionTecnica) {
-            añadirVehiculo(vehiculo);
             listaTransacciones.add(new Transaccion(TipoTransaccion.COMPRA, vehiculo, cliente, this, fecha, precio));
             vehiculo.setPrecio(precio * 1.5);//ganancias :D
             return "Vehiculo "+ vehiculo + "comprado a" + cliente;
@@ -177,13 +185,6 @@ public class Empleado implements Autenticable {
         return mensaje;
     }
 
-    @Override
-    public String toString() {
-        return "Empleado [concesionario=" + concesionario + ", listaClientes=" + listaClientes + ", listaTransacciones="
-                + listaTransacciones + ", listaVehiculos=" + listaVehiculos + ", id=" + id + ", nombre=" + nombre
-                + ", activo=" + activo + ", email=" + email + ", usuario=" + usuario + ", contraseña=" + contraseña
-                + "]";
-    }
 
     /**
      * Eliminar Cliente

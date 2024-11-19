@@ -157,6 +157,7 @@ public class GestionarTransaccionesController {
                         }
                 }
                 if (tipoTransaccionCombo.getValue().equals(TipoTransaccion.COMPRA)) {
+                        InicioSesionController.mostrarAlertaInfo("para comprar un vehiculo, primero debe registrarlo en el sistema");
                         if (RegistrarAdministradorController.validarTextFields(valorCompraCampo, matriculaCampo,
                                         ClienteIDCampo) && fechaCompraFecha.getValue() != null) {
                                 if (concesionario.buscarVehiculo(matriculaCampo.getText()) != null) {
@@ -275,11 +276,11 @@ public class GestionarTransaccionesController {
                 });
 
                 valorColumna.setCellValueFactory(new PropertyValueFactory<>("valor"));
-                tipoTransaccionColumna.setCellValueFactory(new PropertyValueFactory<>("tipoTransaccion"));
+                tipoTransaccionColumna.setCellValueFactory(new PropertyValueFactory<>("tipo"));
                 clienteColumna.setCellValueFactory(new PropertyValueFactory<>("cliente"));
                 fechaColumna.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-                placaVehiculoColumna.setCellValueFactory(new PropertyValueFactory<>("placaVehiculo"));
-                diasColumna.setCellValueFactory(new PropertyValueFactory<>("dias"));
+                placaVehiculoColumna.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+                diasColumna.setCellValueFactory(new PropertyValueFactory<>("empleado"));
                 
                 assert recargarBoton != null
                                 : "fx:id=\"recargarBoton\" was not injected: check your FXML file 'reportesView.fxml'.";

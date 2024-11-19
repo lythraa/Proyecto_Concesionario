@@ -25,8 +25,7 @@ public class Transaccion {
     }
     @Override
     public String toString() {
-        return "Transaccion [tipo=" + tipo + ", vehiculo=" + vehiculo + ", cliente=" + cliente + ", empleado="
-                + empleado + ", fecha=" + fecha + ", valor=" + valor + "]";
+        return "Transaccion [tipo=" + tipo + ", vehiculo=" + vehiculo + ", cliente=" + cliente +  " fecha=" + fecha + ", valor=" + valor + "]";
     }
     public void setTipo(TipoTransaccion tipo) {
         this.tipo = tipo;

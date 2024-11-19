@@ -7,7 +7,14 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Bus;
+import co.edu.uniquindio.poo.model.Camiones;
 import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Deportivo;
+import co.edu.uniquindio.poo.model.PickUp;
+import co.edu.uniquindio.poo.model.SUV;
+import co.edu.uniquindio.poo.model.Sedan;
+import co.edu.uniquindio.poo.model.Van;
 import co.edu.uniquindio.poo.model.Vehiculo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -144,8 +151,25 @@ public class GestionarVehiculosController {
         if (vehiculoSeleccionado == null) {
             return;
         }
-        String infoAdicional = vehiculoSeleccionado.toString();
-    
+        String infoAdicional = "";
+
+        // Verificar el tipo de vehículo y llamar a toString()
+        if (vehiculoSeleccionado instanceof Sedan) {
+            infoAdicional = ((Sedan) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof SUV) {
+            infoAdicional = ((SUV) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Deportivo) {
+            infoAdicional = ((Deportivo) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof PickUp) {
+            infoAdicional = ((PickUp) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Camiones) {
+            infoAdicional = ((Camiones) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Van) {
+            infoAdicional = ((Van) vehiculoSeleccionado).toString();
+        } else if (vehiculoSeleccionado instanceof Bus) {
+            infoAdicional = ((Bus) vehiculoSeleccionado).toString();
+        }
+
         informacionAdicionalText.setText(infoAdicional);
     }
 
@@ -178,7 +202,7 @@ public class GestionarVehiculosController {
     @FXML
     void eliminarVehiculoAccion(ActionEvent event) {
         Vehiculo vehiculoSelecconado = vehiculosTabla.getSelectionModel().getSelectedItem();
-        
+
         if (vehiculoSelecconado == null) {
             InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
             return;
@@ -193,12 +217,11 @@ public class GestionarVehiculosController {
 
         vehiculosTabla.getItems().setAll(concesionario.getListaVehiculos());
     }
-    
+
     @FXML
     void recargarAccion(ActionEvent event) {
         cargarTabla();
     }
-
 
     @FXML
     void initialize() {

@@ -66,6 +66,7 @@ public class InicioSesionController {
                     stage.setTitle("Vista administrador");
                     stage.show();
                     Sesion.setRol(Rol.ADMIN);
+                    Sesion.setId(empleado.getId());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } 

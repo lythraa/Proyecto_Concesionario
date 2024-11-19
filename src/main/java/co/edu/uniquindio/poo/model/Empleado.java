@@ -231,6 +231,45 @@ public class Empleado implements Autenticable {
         return mensaje;
     }
 
+    /**
+ * Eliminar Transacción
+ * 
+ * @param transaccion
+ * @return
+ * @throws IllegalArgumentException
+ */
+public String eliminarTransaccion(Transaccion transaccion) throws IllegalArgumentException {
+    String mensaje = "Se eliminó correctamente";
+    
+    // Verificar si el objeto es nulo
+    if (transaccion == null) {
+        throw new IllegalArgumentException("No se aceptan objetos nulos");
+    }
+    
+    // Verificar si la transacción existe en la lista
+    if (!listaTransacciones.contains(transaccion)) {
+        mensaje = "No se encuentra en la lista";
+    } else {
+        listaTransacciones.remove(transaccion); // Eliminar transacción de la lista
+    }
+    
+    return mensaje;
+}
+
+/**
+ * Buscar Transacción por vehículo (placa)
+ * 
+ * @param placaVehiculo
+ * @return
+ */
+public Transaccion buscarTransaccionPorVehiculo(String placaVehiculo) {
+    return listaTransacciones.stream()
+                              .filter(transaccion -> transaccion.getVehiculo().getMatricula().equals(placaVehiculo))
+                              .findFirst()
+                              .orElse(null); // Retorna null si no se encuentra
+}
+
+
     public LinkedList<Transaccion> getListaTransacciones() {
         return listaTransacciones;
     }

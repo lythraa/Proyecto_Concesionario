@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,20 @@ public class EmpleadoController {
     @FXML
     void cerrarSesionAccion(ActionEvent event) {
 
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/co/edu/uniquindio/poo/inicioSesion.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = App.getStage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inicio Sesión");
+            stage.show();
+            Sesion.setRol(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    
 
     @FXML
     void gestionarClientesAccion(ActionEvent event) {

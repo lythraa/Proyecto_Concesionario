@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
@@ -56,7 +55,6 @@
                             </font>
                         </Text>
                         <TextField fx:id="EmpleadoNombreCampo" prefHeight="30.0" prefWidth="287.0" promptText="ID del Reporte" />
-                  <ComboBox prefHeight="25.0" prefWidth="289.0" promptText="Nombre del Empleado" />
                   <DatePicker fx:id="fechaInicioDate" prefHeight="25.0" prefWidth="287.0" promptText="Fecha Inicial de La Lista de transacciones" />
                   <DatePicker fx:id="fechaFinDate" prefHeight="25.0" prefWidth="298.0" promptText="Fecha Final de La Lista de transacciones" />
                         <Button fx:id="añadirEmpleadoBoton" onAction="#añadirEmpleadoAccion" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 15px;" text="Crear Reporte" />

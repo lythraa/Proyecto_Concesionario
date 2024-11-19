@@ -92,7 +92,14 @@ public class InicioSesionController {
 
     @FXML
     void olvidoContraseniaAccion(ActionEvent event) {
-        
+        mostrarAlertaInfo("A continuación, escriba su direccion de correo electronico en el campo de usuario y vuelva a darle click a est boton");
+        for (Empleado empleadoaux : concesionario.getListaEmpleados()) {
+            String s = empleadoaux.recuperarContraseña(usuarioCampo.getText());
+            if (!s.equals("Contraseña incorrecta")) {
+                mostrarAlertaInfo(s);
+                return;
+            }
+        } mostrarAlertaInfo("No encontrado");
     }
 
     @FXML

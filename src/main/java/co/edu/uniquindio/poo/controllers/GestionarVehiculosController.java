@@ -23,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GestionarVehiculosController {
@@ -72,7 +73,7 @@ public class GestionarVehiculosController {
     private ImageView imagenVehiculo3;
 
     @FXML
-    private TextArea informacionAdicionalTexto;
+    private Text informacionAdicionalText;
 
     @FXML
     private TableColumn<Vehiculo, String> matriculaColumna;
@@ -218,7 +219,7 @@ public class GestionarVehiculosController {
                 : "fx:id=\"imagenVehiculo2\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert imagenVehiculo3 != null
                 : "fx:id=\"imagenVehiculo3\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
-        assert informacionAdicionalTexto != null
+        assert informacionAdicionalText != null
                 : "fx:id=\"informacionAdicionalTexto\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";
         assert marcaColumna != null
                 : "fx:id=\"marcaColumna\" was not injected: check your FXML file 'gestionarVehiculosView.fxml'.";

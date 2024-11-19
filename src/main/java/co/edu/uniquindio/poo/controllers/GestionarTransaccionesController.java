@@ -87,6 +87,14 @@ public class GestionarTransaccionesController {
 
     @FXML
     private TextField matriculaCampo;
+    
+    @FXML
+    private Button atrasButton;
+    
+    @FXML
+    void atrasAccion(ActionEvent event) {
+
+    }
 
     @FXML
     void crearTransaccionAccion(ActionEvent event) {

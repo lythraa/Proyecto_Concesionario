@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.controllers.Sesion.Rol;
 import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Empleado;
@@ -64,6 +65,7 @@ public class InicioSesionController {
                     stage.setScene(new Scene(root));
                     stage.setTitle("Vista administrador");
                     stage.show();
+                    Sesion.setRol(Rol.ADMIN);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -76,21 +78,19 @@ public class InicioSesionController {
                     stage.setScene(new Scene(root));
                     stage.setTitle("Vista empleado");
                     stage.show();
+                    Sesion.setRol(Rol.EMPLEADO);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } 
         }else {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Alertaaaaa");
-            alert.setContentText("Empleado no encontrado");
-            alert.showAndWait();
+            mostrarAlerta("Alerta", "Empleado no encontrado o campos vacios");
         }
     }
 
     @FXML
     void olvidoContraseniaAccion(ActionEvent event) {
-
+        
     }
 
     @FXML
@@ -107,4 +107,11 @@ public class InicioSesionController {
 
     }
 
+
+    private static void mostrarAlerta( String titulo, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
 }

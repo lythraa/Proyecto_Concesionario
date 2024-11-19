@@ -1,7 +1,8 @@
 module co.edu.uniquindio.poo {
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires javafx.fxml;
     requires transitive javafx.graphics;
+
     requires javafx.base;
 
     opens co.edu.uniquindio.poo.model to javafx.fxml;

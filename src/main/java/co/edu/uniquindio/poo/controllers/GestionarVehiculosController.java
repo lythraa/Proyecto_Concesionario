@@ -78,6 +78,14 @@ public class GestionarVehiculosController {
     private Button imagenAnteriorBoton;
 
     @FXML
+    private Button atrasButton;
+    
+    @FXML
+    void atrasAccion(ActionEvent event) {
+
+    }
+
+    @FXML
     void filtrarAccion(ActionEvent event) {
 
     }

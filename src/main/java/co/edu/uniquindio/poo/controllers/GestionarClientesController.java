@@ -1,14 +1,20 @@
 package co.edu.uniquindio.poo.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.controllers.Sesion.Rol;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class GestionarClientesController {
 
@@ -50,6 +56,38 @@ public class GestionarClientesController {
 
     @FXML
     private TextField clienteNombreCampo;
+
+    @FXML
+    private Button atrasButton;
+    
+    @FXML
+    void atrasAccion(ActionEvent event) {
+        if (Rol.ADMIN.equals(Sesion.getRol())) {
+            FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = (Stage) atrasButton.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Vista Administrador");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        } else {
+            FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Stage stage = (Stage) atrasButton.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Vista Empleado");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
 
     @FXML
     void buscarAccion(ActionEvent event) {

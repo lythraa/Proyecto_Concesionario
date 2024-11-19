@@ -79,6 +79,14 @@ public class GestionarEmpleadosController {
     private Button bloquearBoton;
 
     @FXML
+    private Button atrasButton;
+    
+    @FXML
+    void atrasAccion(ActionEvent event) {
+
+    }
+
+    @FXML
     void añadirEmpleadoAccion(ActionEvent event) {
 
     }

@@ -53,25 +53,6 @@
                         <Button fx:id="añadirEmpleadoBoton" onAction="#añadirEmpleadoAccion" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 15px;" text="Crear Reporte" />
                     </children>
                 </VBox>
-            <TreeTableView fx:id="treeTableView" layoutX="118.0" layoutY="520.0" prefHeight="400.0" prefWidth="600.0">
-         <columns>
-            <TreeTableColumn fx:id="idColumn" prefWidth="100.0" text="ID">
-                <cellValueFactory>
-                    <PropertyValueFactory property="id" />
-                </cellValueFactory>
-            </TreeTableColumn>
-            <TreeTableColumn fx:id="empleadoColumn" prefWidth="200.0" text="Empleado">
-                <cellValueFactory>
-                    <PropertyValueFactory property="empleado.nombre" />
-                </cellValueFactory>
-            </TreeTableColumn>
-            <TreeTableColumn fx:id="transaccionesColumn" prefWidth="300.0" text="Transacciones">
-                <cellValueFactory>
-                    <PropertyValueFactory property="transacciones" />
-                </cellValueFactory>
-            </TreeTableColumn>
-         </columns>
-      </TreeTableView>
          </children>
       </Pane>
       <Pane layoutY="748.0" prefHeight="85.0" prefWidth="1265.0" style="-fx-background-color: black;" />

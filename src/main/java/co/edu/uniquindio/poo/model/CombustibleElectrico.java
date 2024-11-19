@@ -26,6 +26,11 @@ public class CombustibleElectrico extends Combustible {
         this.tiempoCarga = tiempoCarga;
     }
 
+    @Override
+    public String toString() {
+        return "CombustibleElectrico [autonomia=" + autonomia + ", tiempoCarga=" + tiempoCarga + "]";
+    }
+
     
 
 }

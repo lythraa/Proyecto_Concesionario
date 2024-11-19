@@ -31,4 +31,23 @@ public class Deportivo extends Carro {
     public void setTiempoParaAlcanzar100KmH(double tiempoParaAlcanzar100KmH) {
         this.tiempoParaAlcanzar100KmH = tiempoParaAlcanzar100KmH;
     }
+
+    @Override
+    public String toString() {
+        return "Deportivo [numeroCaballosDeFuerza=" + numeroCaballosDeFuerza + ", tiempoParaAlcanzar100KmH="
+                + tiempoParaAlcanzar100KmH + ", getNumeroCaballosDeFuerza()=" + getNumeroCaballosDeFuerza()
+                + ", getMarca()=" + getMarca() + ", getModelo()=" + getModelo() + ", isEsNuevo()=" + isEsNuevo()
+                + ", getNumeroDePasajeros()=" + getNumeroDePasajeros() + ", getNumeroCambios()=" + getNumeroCambios()
+                + ", getTiempoParaAlcanzar100KmH()=" + getTiempoParaAlcanzar100KmH() + ", getVelocidadMaxima()="
+                + getVelocidadMaxima() + ", getCilindraje()=" + getCilindraje() + ", getNúmeroDePuertas()="
+                + getNúmeroDePuertas() + ", getPrecio()=" + getPrecio() + ", isDisponibilidad()=" + isDisponibilidad()
+                + ", getCapacidadDelMaletero()=" + getCapacidadDelMaletero() + ", getTransmision()=" + getTransmision()
+                + ", getCombustible()=" + getCombustible() + ", isTieneAireAcondicionado()="
+                + isTieneAireAcondicionado() + ", isTieneCámaraDeReversa()=" + isTieneCámaraDeReversa()
+                + ", getClass()=" + getClass() + ", getNúmeroDeBolsasDeAire()=" + getNúmeroDeBolsasDeAire()
+                + ", getPrecioDia()=" + getPrecioDia() + ", isTieneABS()=" + isTieneABS() + ", getMatricula()="
+                + getMatricula() + ", toString()=" + super.toString() + ", hashCode()=" + hashCode() + "]";
+    }
+
+    
 }

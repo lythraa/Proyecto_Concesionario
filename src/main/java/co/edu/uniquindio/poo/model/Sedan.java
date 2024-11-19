@@ -56,4 +56,26 @@ public class Sedan extends Carro {
         this.tieneAsistenteDePermanenciaEnElCarril = tieneAsistenteDePermanenciaEnElCarril;
     }
 
+    @Override
+    public String toString() {
+        return "Sedan [tieneVelocidadDeCrucero=" + tieneVelocidadDeCrucero + ", tieneSensoresDeColision="
+                + tieneSensoresDeColision + ", tieneSensorDeTráficoCruzado=" + tieneSensorDeTráficoCruzado
+                + ", tieneAsistenteDePermanenciaEnElCarril=" + tieneAsistenteDePermanenciaEnElCarril + ", getMarca()="
+                + getMarca() + ", getModelo()=" + getModelo() + ", isEsNuevo()=" + isEsNuevo()
+                + ", getNumeroDePasajeros()=" + getNumeroDePasajeros() + ", getNumeroCambios()=" + getNumeroCambios()
+                + ", getVelocidadMaxima()=" + getVelocidadMaxima() + ", getCilindraje()=" + getCilindraje()
+                + ", isTieneVelocidadDeCrucero()=" + isTieneVelocidadDeCrucero() + ", getNúmeroDePuertas()="
+                + getNúmeroDePuertas() + ", getPrecio()=" + getPrecio() + ", isDisponibilidad()=" + isDisponibilidad()
+                + ", getCapacidadDelMaletero()=" + getCapacidadDelMaletero() + ", getTransmision()=" + getTransmision()
+                + ", isTieneSensoresDeColision()=" + isTieneSensoresDeColision() + ", getCombustible()="
+                + getCombustible() + ", isTieneAireAcondicionado()=" + isTieneAireAcondicionado()
+                + ", isTieneSensorDeTráficoCruzado()=" + isTieneSensorDeTráficoCruzado() + ", isTieneCámaraDeReversa()="
+                + isTieneCámaraDeReversa() + ", isTieneAsistenteDePermanenciaEnElCarril()="
+                + isTieneAsistenteDePermanenciaEnElCarril() + ", getClass()=" + getClass()
+                + ", getNúmeroDeBolsasDeAire()=" + getNúmeroDeBolsasDeAire() + ", getPrecioDia()=" + getPrecioDia()
+                + ", isTieneABS()=" + isTieneABS() + ", getMatricula()=" + getMatricula() + ", toString()="
+                + super.toString() + ", hashCode()=" + hashCode() + "]";
+    }
+
+    
 }

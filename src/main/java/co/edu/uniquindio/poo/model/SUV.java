@@ -65,4 +65,28 @@ public class SUV extends Carro {
     public void setEs4x4(boolean es4x4) {
         this.es4x4 = es4x4;
     }
+
+    @Override
+    public String toString() {
+        return "SUV [tieneVelocidadDeCrucero=" + tieneVelocidadDeCrucero + ", tieneSensoresDeColision="
+                + tieneSensoresDeColision + ", tieneSensorDeTráficoCruzado=" + tieneSensorDeTráficoCruzado
+                + ", tieneAsistenteDePermanenciaEnElCarril=" + tieneAsistenteDePermanenciaEnElCarril + ", es4x4="
+                + es4x4 + ", getMarca()=" + getMarca() + ", getModelo()=" + getModelo() + ", isEsNuevo()=" + isEsNuevo()
+                + ", getNumeroDePasajeros()=" + getNumeroDePasajeros() + ", getNumeroCambios()=" + getNumeroCambios()
+                + ", getVelocidadMaxima()=" + getVelocidadMaxima() + ", getCilindraje()=" + getCilindraje()
+                + ", getNúmeroDePuertas()=" + getNúmeroDePuertas() + ", isTieneVelocidadDeCrucero()="
+                + isTieneVelocidadDeCrucero() + ", getPrecio()=" + getPrecio() + ", isDisponibilidad()="
+                + isDisponibilidad() + ", getCapacidadDelMaletero()=" + getCapacidadDelMaletero()
+                + ", getTransmision()=" + getTransmision() + ", getCombustible()=" + getCombustible()
+                + ", isTieneSensoresDeColision()=" + isTieneSensoresDeColision() + ", isTieneAireAcondicionado()="
+                + isTieneAireAcondicionado() + ", isTieneSensorDeTráficoCruzado()=" + isTieneSensorDeTráficoCruzado()
+                + ", isTieneCámaraDeReversa()=" + isTieneCámaraDeReversa()
+                + ", isTieneAsistenteDePermanenciaEnElCarril()=" + isTieneAsistenteDePermanenciaEnElCarril()
+                + ", getClass()=" + getClass() + ", getNúmeroDeBolsasDeAire()=" + getNúmeroDeBolsasDeAire()
+                + ", getPrecioDia()=" + getPrecioDia() + ", isTieneABS()=" + isTieneABS() + ", isEs4x4()=" + isEs4x4()
+                + ", getMatricula()=" + getMatricula() + ", toString()=" + super.toString() + ", hashCode()="
+                + hashCode() + "]";
+    }
+
+    
 }

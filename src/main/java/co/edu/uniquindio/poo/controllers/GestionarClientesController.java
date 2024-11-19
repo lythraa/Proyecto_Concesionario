@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Concesionario;
@@ -79,7 +80,7 @@ public class GestionarClientesController {
                     getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
             try {
                 Parent root = loader.load();
-                Stage stage = (Stage) atrasButton.getScene().getWindow();
+                Stage stage = App.getStage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Vista Administrador");
                 stage.show();
@@ -91,7 +92,7 @@ public class GestionarClientesController {
                     getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
             try {
                 Parent root = loader.load();
-                Stage stage = (Stage) atrasButton.getScene().getWindow();
+                Stage stage = App.getStage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Vista Empleado");
                 stage.show();

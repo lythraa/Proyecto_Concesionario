@@ -116,4 +116,11 @@ public class InicioSesionController {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+
+    public static void mostrarAlertaInfo(String mensaje){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Alerta");
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
 }

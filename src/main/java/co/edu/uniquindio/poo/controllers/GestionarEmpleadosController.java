@@ -2,14 +2,22 @@ package co.edu.uniquindio.poo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Empleado;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Pagination;
@@ -17,9 +25,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class GestionarEmpleadosController {
+    private Concesionario concesionario = Concesionario.getInstancia();
 
     @FXML
     private ResourceBundle resources;
@@ -76,7 +86,7 @@ public class GestionarEmpleadosController {
     private Button buscarBoton;
 
     @FXML
-    private TableView<?> empleadosTabla;
+    private TableView<Empleado> empleadosTabla;
 
     @FXML
     private PasswordField EmpleadoContraseñaCampo;
@@ -95,7 +105,7 @@ public class GestionarEmpleadosController {
                         getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) atrasButton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Vista Administrador");
                     stage.show();
@@ -107,7 +117,7 @@ public class GestionarEmpleadosController {
                         getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
                 try {
                     Parent root = loader.load();
-                    Stage stage = (Stage) atrasButton.getScene().getWindow();
+                    Stage stage = App.getStage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Vista Empleado");
                     stage.show();
@@ -115,32 +125,100 @@ public class GestionarEmpleadosController {
                     e.printStackTrace();
                 }
         }
+
+    }
+
+    private void cargarTabla(){
+        ObservableList<Empleado> empleadosObservable = FXCollections.observableArrayList(concesionario.getListaEmpleados());
+        empleadosTabla.getItems().setAll(empleadosObservable);
+    }
+
+    private void limpiarCampos(){
+        EmpleadoCedulaCampo.clear(); 
+        EmpleadoContraseñaCampo.clear(); 
+        EmpleadoEmailCampo.clear();
+        EmpleadoNombreCampo.clear();
+        EmpleadoUsuarioCampo.clear();
+    }
+    @FXML
+    void añadirEmpleadoAccion(ActionEvent event) {
+
+        if (RegistrarAdministradorController.validarTextFields(EmpleadoCedulaCampo, EmpleadoContraseñaCampo, EmpleadoEmailCampo, EmpleadoNombreCampo, EmpleadoUsuarioCampo)) {
+            Empleado empleado = new Empleado(EmpleadoCedulaCampo.getText(), EmpleadoNombreCampo.getText(), true, EmpleadoEmailCampo.getText(), EmpleadoUsuarioCampo.getText(), EmpleadoContraseñaCampo.getText());
+            concesionario.añadirEmpleado(empleado);
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setTitle("Alerta");
+            alerta.setContentText("Creado con exito");
+            alerta.showAndWait();
+        }else{
+            InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
+    }
+    limpiarCampos();
+    cargarTabla();
+
         
     }
 
     @FXML
-    void añadirEmpleadoAccion(ActionEvent event) {
-
-    }
-
-    @FXML
     void buscarAccion(ActionEvent event) {
+        if (busquedaCampo!=null) {
+            String busqueda = busquedaCampo.getText();
+            LinkedList<Empleado> resultados = new LinkedList<>();
 
+        for (Empleado cliente : concesionario.getListaEmpleados()) {
+            if (cliente.getId().equalsIgnoreCase(busqueda) ||
+                    cliente.getNombre().equalsIgnoreCase(busqueda)) {
+                resultados.add(cliente);
+            }
+        }
+
+        if (resultados.isEmpty()) {
+            InicioSesionController.mostrarAlertaInfo("No se encontró");
+        } else {
+            empleadosTabla.getItems().setAll(resultados);
+        }
+        }
     }
 
     @FXML
     void bloquearAccion(ActionEvent event) {
-
+        Empleado empleadoSeleccionado = (Empleado) empleadosTabla.getSelectionModel().getSelectedItem();
+        if (empleadoSeleccionado == null) {
+            InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
+            return;
+        }
+        concesionario.buscarEmpleado(empleadoSeleccionado.getId()).setActivo(false);
+        InicioSesionController.mostrarAlertaInfo("Bloqueado con exito");
     }
 
     @FXML
     void desbloquearAccion(ActionEvent event) {
 
+        Empleado empleadoSeleccionado = (Empleado) empleadosTabla.getSelectionModel().getSelectedItem();
+        if (empleadoSeleccionado == null) {
+            InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
+            return;
+        }if (empleadoSeleccionado.isActivo()) {
+            InicioSesionController.mostrarAlertaInfo("Ya está activo");
+            return;
+        }
+        concesionario.buscarEmpleado(empleadoSeleccionado.getId()).setActivo(true);
+        InicioSesionController.mostrarAlertaInfo("Desbloqueado con exito");
     }
 
     @FXML
     void eliminarAccion(ActionEvent event) {
 
+       Empleado empleadoSeleccionado = (Empleado) empleadosTabla.getSelectionModel().getSelectedItem();
+
+        if (empleadoSeleccionado == null) {
+            InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
+            return;
+        }
+
+        concesionario.eliminarEmpleado(empleadoSeleccionado);
+        InicioSesionController.mostrarAlertaInfo("Eliminado con exito");
+        cargarTabla();
     }
 
     @FXML

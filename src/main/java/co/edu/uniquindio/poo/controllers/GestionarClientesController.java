@@ -8,12 +8,9 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Concesionario;
-<<<<<<< HEAD
 import co.edu.uniquindio.poo.model.Empleado;
-=======
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
->>>>>>> afe58b0672cf73cc07730eee789fad9b0bc32708
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -110,14 +107,12 @@ public class GestionarClientesController {
 
     @FXML
     void buscarAccion(ActionEvent event) {
-<<<<<<< HEAD
         if (!busquedaNombreOrIDCampo.getText().equals(null)) {
             Cliente clienteaux = concesionario.buscarCliente(busquedaNombreOrIDCampo.getText());
             if (clienteaux != null) {
                 
             }
         }
-=======
         String busqueda = busquedaNombreOrIDCampo.getText();
 
         if (busqueda.isEmpty()) {
@@ -140,7 +135,6 @@ public class GestionarClientesController {
         } else {
             vehiculosTabla.getItems().setAll(resultados);
         }
->>>>>>> afe58b0672cf73cc07730eee789fad9b0bc32708
     }
 
     @FXML
@@ -159,7 +153,6 @@ public class GestionarClientesController {
 
     @FXML
     void añadirClienteAccion(ActionEvent event) {
-<<<<<<< HEAD
         if (RegistrarAdministradorController.validarTextFields(clienteCedulaCampo, clienteEmailCampo, clienteNombreCampo)) {
             Cliente cliente = new Cliente(clienteCedulaCampo.getText(), clienteNombreCampo.getText(), clienteEmailCampo.getText());
             concesionario.añadirCliente(cliente);
@@ -170,7 +163,6 @@ public class GestionarClientesController {
         }else{
             InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
     }
-=======
         String nombre = clienteNombreCampo.getText();
         String id = clienteCedulaCampo.getText();
         String contacto = clienteEmailCampo.getText();
@@ -190,7 +182,6 @@ public class GestionarClientesController {
         clienteNombreCampo.clear();
         clienteCedulaCampo.clear();
         clienteEmailCampo.clear();
->>>>>>> afe58b0672cf73cc07730eee789fad9b0bc32708
     }
 
     @FXML

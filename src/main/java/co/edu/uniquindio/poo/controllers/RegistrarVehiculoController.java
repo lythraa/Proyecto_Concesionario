@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.app.App;
 import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Transmision;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camiones;
@@ -14,6 +15,10 @@ import co.edu.uniquindio.poo.model.PickUp;
 import co.edu.uniquindio.poo.model.SUV;
 import co.edu.uniquindio.poo.model.Sedan;
 import co.edu.uniquindio.poo.model.Van;
+import co.edu.uniquindio.poo.model.Combustible;
+import co.edu.uniquindio.poo.model.CombustibleElectrico;
+import co.edu.uniquindio.poo.model.CombustibleFosil;
+import co.edu.uniquindio.poo.model.CombustibleHibrido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +33,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegistrarVehiculoController {
+
+        private Concesionario concesionario = Concesionario.getInstancia();
 
     @FXML
     private ResourceBundle resources;
@@ -162,7 +169,7 @@ public class RegistrarVehiculoController {
     private TextField NumSalidasEmergenciaBusCampo;
 
     @FXML
-    private ComboBox<String> transmisionCombo;
+    private ComboBox<Transmision> transmisionCombo;
 
     @FXML
     private ComboBox<String> Es4x4SUVCombo;
@@ -204,6 +211,13 @@ public class RegistrarVehiculoController {
         comboBox.getItems().addAll("Sí", "No");
     }
 
+    private boolean traducirCombo(String comboValue){
+        if (comboValue.equals("Sí")) {
+                return true;
+        }
+        return false;
+    }
+
     private void mostrarPanelPorVehiculo(ActionEvent event) {
         desactivarTodosLosPaneles();
         String tipoVehiculo = tipoVehiculoCombo.getValue();
@@ -241,8 +255,56 @@ public class RegistrarVehiculoController {
         camionPanel.setVisible(false);
         VanPanel.setVisible(false);
         busPanel.setVisible(false);
+        combustibleElectricoPanel.setVisible(false);
+        combustibleHibridoPanel.setVisible(false);
     }
 
+
+    private String combustibleIngresado = tipoCombustibleCombo.getValue();
+    
+    private Combustible getCombustible(String combustibleIngresado){
+        if (combustibleIngresado !=null){
+            switch (combustibleIngresado) {
+                case "Fosil":
+                        return new CombustibleFosil();
+
+                case "Hibrido":
+                        if (traducirCombo(EsHibridoLigeroCombo.getValue())) {
+                                
+                                return new CombustibleHibrido(traducirCombo(esEnchufableCombo.getValue()), traducirCombo(EsHibridoLigeroCombo.getValue()));
+                        } else {
+                                return new CombustibleHibrido(traducirCombo(esEnchufableCombo.getValue()));
+                        }
+
+                case "Electrico":
+                        return new CombustibleElectrico(Integer.parseInt(autonomiaCampo.getText()), Integer.parseInt(tiempoCargaCampo.getText()));
+
+                default:
+                        break;
+            }
+
+        }InicioSesionController.mostrarAlerta("Alerta", "TipoCombustibleNulo"); 
+        return null;
+            
+    }
+
+
+    private void mostrarPanelCombustible(ActionEvent event){
+        String tipoCombustible = tipoCombustibleCombo.getValue();
+        switch (tipoCombustible) {
+            case "Hibrido":
+                combustibleHibridoPanel.setVisible(true);
+                break;
+            case "Electrico":
+                combustibleElectricoPanel.setVisible(true);
+                break;
+            default:
+                break;
+        }
+
+
+
+    }
     @FXML
     void añadirAccion(ActionEvent event) {
         String tipoVehiculo = tipoVehiculoCombo.getValue();
@@ -253,14 +315,15 @@ public class RegistrarVehiculoController {
         double precioDiaAlquiler = Double.parseDouble(precioDiaAlquilerCampo.getText());
         String matricula = matriculaCampo.getText();
         String cilindraje = cilindrajeCampo.getText();
-        String tipoCombustible = tipoCombustibleCombo.getValue();
+        Combustible tipoCombustible = getCombustible(tipoCombustibleCombo.getValue());
         Transmision tipo = transmisionCombo.getValue();
 
         if (tipoVehiculo != null) {
             if (tipoVehiculo.equals("Deportivo")) {
                 double tiempo100KmH = Double.parseDouble(TiempoAlcanzar100KmHDeportivoCampo.getText());
                 double caballosFuerza = Double.parseDouble(NumcaballosFuerzaDeportivoCampo.getText());
-                Deportivo deportivo = new Deportivo(matricula, marca, modelo, false, 0, caballosFuerza, cilindraje, precio, precioDiaAlquiler, false, null, null, 0, 0, tiempo100KmH, false, false, 0, false, 0, caballosFuerza);
+                Deportivo deportivo = new Deportivo(matricula, marca, modelo, false, 0, caballosFuerza, cilindraje, precio, precioDiaAlquiler, true, tipo, tipoCombustible, 0, 0, tiempo100KmH, false, false, 0, false, 0, caballosFuerza);
+                concesionario.añadirVehiculo(deportivo);
 
             } else {
                 //carros
@@ -271,7 +334,7 @@ public class RegistrarVehiculoController {
 
                 boolean tieneAireAcondicionado = TieneAireAcondicionadoCarroCombo.getValue().equals("Sí");
                 boolean TieneAbsCombo = TieneAbsCarroCombo.getValue().equals("Sí");
-                boolean TieneCamaraReversaCarroCombo = TieneCamaraReversaCarroCombo.getValue().equals("Sí");
+                boolean TieneCamaraReversa = TieneCamaraReversaCarroCombo.getValue().equals("si");
 
 
                 boolean tieneSensoresColision = false;
@@ -286,7 +349,8 @@ public class RegistrarVehiculoController {
                     tieneVelocidadCrucero = TieneVelocidadCruceroSedanCombo.getValue().equals("Sí");
                     tieneAsistenciaCarril = TieneAsistenciaPermanenciaCarrilSedanCombo.getValue().equals("Sí");
 
-                    Sedan sedan = new Sedan(matricula, marca, modelo, es4x4, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, TieneCamaraReversaCarroCombo, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision, tieneAsistenciaCarril, es4x4);
+                    Sedan sedan = new Sedan(matricula, marca, modelo, es4x4, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, TieneCamaraReversa, tipo, tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision, tieneAsistenciaCarril, es4x4);
+                    concesionario.añadirVehiculo(sedan);
                     
                 } else if (tipoVehiculo.equals("SUV")) {
                     // Atributos específicos para un SUV
@@ -296,13 +360,15 @@ public class RegistrarVehiculoController {
                     tieneAsistenciaCarril = TieneAsistenciaPermanenciaCarrilSUVCombo.getValue().equals("Sí");
                     es4x4 = Es4x4SUVCombo.getValue().equals("Sí");
 
-                    SUV suv = new SUV(matricula, marca, modelo, es4x4, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, TieneCamaraReversaCarroCombo, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision, tieneVelocidadCrucero, tieneAsistenciaCarril, es4x4);
+                    SUV suv = new SUV(matricula, marca, modelo, es4x4, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, TieneCamaraReversa, tipo, tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneSensorTraficoCruzado, numPasajeros, TieneAbsCombo, tieneVelocidadCrucero, tieneSensoresColision, tieneVelocidadCrucero, tieneAsistenciaCarril, es4x4);
+                    concesionario.añadirVehiculo(suv);
                     
                 } else if (tipoVehiculo.equals("PickUp")) {
                     double capacidadCarga = Double.parseDouble(CapacidadCargaPickUpCampo.getText());
                     es4x4 = Es4x4PickUpCombo.getValue().equals("Sí");
 
-                    PickUp pickUp = new PickUp(matricula, marca, modelo, tieneSensorTraficoCruzado, numPasajeros, capacidadCarga, cilindraje, precio, precioDiaAlquiler, tieneVelocidadCrucero, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAsistenciaCarril, numPasajeros, TieneAbsCombo, es4x4, capacidadCarga);
+                    PickUp pickUp = new PickUp(matricula, marca, modelo, tieneSensorTraficoCruzado, numPasajeros, capacidadCarga, cilindraje, precio, precioDiaAlquiler, tieneVelocidadCrucero, tipo, tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAsistenciaCarril, numPasajeros, TieneAbsCombo, es4x4, capacidadCarga);
+                    concesionario.añadirVehiculo(pickUp);
                     
 
                 } else if (tipoVehiculo.equals("Camión")) {
@@ -310,12 +376,14 @@ public class RegistrarVehiculoController {
                     boolean tieneAbs = TieneAbsCarroCombo.getValue().equals("Sí");
                     double tiempoCarga = Double.parseDouble(tiempoCargaCampo.getText());
 
-                    Camiones camion = new Camiones(matricula, marca, modelo, tieneAsistenciaCarril, numEjes, tiempoCarga, cilindraje, precio, precioDiaAlquiler, es4x4, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAbs, numPasajeros, tieneAbs, numEjes, tiempoCarga);
+                    Camiones camion = new Camiones(matricula, marca, modelo, tieneAsistenciaCarril, numEjes, tiempoCarga, cilindraje, precio, precioDiaAlquiler, es4x4, tipo, tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, tieneAbs, numPasajeros, tieneAbs, numEjes, tiempoCarga);
+                    concesionario.añadirVehiculo(camion);
                     
                 } else if (tipoVehiculo.equals("Van")) {
                     boolean esLinda = EsLindaVanCombo.getValue().equals("Sí");
 
-                    Van van = new Van(matricula, marca, modelo, tieneVelocidadCrucero, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, tieneAsistenciaCarril, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4, numPasajeros, TieneAbsCombo, esLinda);
+                    Van van = new Van(matricula, marca, modelo, tieneVelocidadCrucero, numPasajeros, capacidadDelMaletero, cilindraje, precio, precioDiaAlquiler, tieneAsistenciaCarril, tipo, tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4, numPasajeros, TieneAbsCombo, esLinda);
+                    concesionario.añadirVehiculo(van);
                    
                 } else if (tipoVehiculo.equals("Bus")) {
                    
@@ -323,7 +391,8 @@ public class RegistrarVehiculoController {
                     int numeroDeEjes = Integer.parseInt(NumEjesBusCampo.getText());
 
                    
-                    Bus bus = new Bus(matricula, marca, modelo, tieneVelocidadCrucero, numeroDeEjes, numeroDeEjes, cilindraje, precio, precioDiaAlquiler, tieneAsistenciaCarril, null, null, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4, numSalidasEmergencia, TieneAbsCombo, numeroDeEjes, numeroDeEjes);
+                    Bus bus = new Bus(matricula, marca, modelo, tieneVelocidadCrucero, numeroDeEjes, numeroDeEjes, cilindraje, precio, precioDiaAlquiler, tieneAsistenciaCarril, tipo, tipoCombustible, numPasajeros, numPuertas, capacidadDelMaletero, tieneAireAcondicionado, es4x4, numSalidasEmergencia, TieneAbsCombo, numeroDeEjes, numeroDeEjes);
+                    concesionario.añadirVehiculo(bus);
                    
                 }
             }
@@ -371,7 +440,6 @@ public class RegistrarVehiculoController {
         inicializarComboBox(EsLindaVanCombo);
         inicializarComboBox(TieneAireAcondicionadoCarroCombo);
         inicializarComboBox(Es4x4PickUpCombo);
-        inicializarComboBox(tipoCombustibleCombo);
         inicializarComboBox(TieneVelocidadCruceroSUVCombo);
         inicializarComboBox(TieneSensoresColisionSUVCombo);
         inicializarComboBox(TieneVelocidadCruceroSedanCombo);
@@ -379,11 +447,13 @@ public class RegistrarVehiculoController {
         inicializarComboBox(TieneSensorTraficoCruzadoSUVCombo);
         inicializarComboBox(TieneAsistenciaPermanenciaCarrilSUVCombo);
         inicializarComboBox(esEnchufableCombo);
-        inicializarComboBox(transmisionCombo);
         inicializarComboBox(Es4x4SUVCombo);
         inicializarComboBox(TieneCamaraReversaCarroCombo);
         tipoVehiculoCombo.getItems().addAll("Sedán", "SUV", "Deportivo", "PickUp", "Camión", "Van", "Bus");
         tipoVehiculoCombo.setOnAction(this::mostrarPanelPorVehiculo);
+        tipoCombustibleCombo.setOnAction(this::mostrarPanelCombustible);
+        transmisionCombo.getItems().setAll(Transmision.values());
+        tipoCombustibleCombo.getItems().setAll("Fosil", "Hibrido", "Electrico");
 
         assert TieneSensoresColisionSedanCombo != null
                 : "fx:id=\"TieneSensoresColisionSedanCombo\" was not injected: check your FXML file 'registrarVehiculoView.fxml'.";
@@ -478,7 +548,7 @@ public class RegistrarVehiculoController {
         assert valocidadMaximaCampo != null
                 : "fx:id=\"valocidadMaximaCampo\" was not injected: check your FXML file 'registrarVehiculoView.fxml'.";
         assert TieneCamaraReversaCarroCombo != null
-                : "fx:id=\"TieneCamaraReversaCarroCombo\" was not injected: check your FXML file 'registrarVehiculoView.fxml'.";
+                : "fx:id=\"TieneCamaraReversa\" was not injected: check your FXML file 'registrarVehiculoView.fxml'.";
         assert VanPanel != null
                 : "fx:id=\"VanPanel\" was not injected: check your FXML file 'registrarVehiculoView.fxml'.";
         assert combustibleHibridoPanel != null

@@ -26,7 +26,7 @@ public abstract class Vehiculo {
         this.velocidadMaxima = velocidadMaxima;
         this.cilindraje = cilindraje;
         this.precio = precio;
-        this.disponibilidad = disponibilidad;
+        this.disponibilidad = true;
         this.transmision = transmision;
         this.combustible = combustible;
         this.precioDia = precioDia;

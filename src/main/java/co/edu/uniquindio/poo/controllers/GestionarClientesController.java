@@ -102,8 +102,7 @@ public class GestionarClientesController {
     }
 
     private void cargarTablaClientes() {
-        LinkedList<Cliente> listaClientes = Concesionario.getInstancia().getListaClientes();
-        vehiculosTabla.getItems().setAll(listaClientes);
+        vehiculosTabla.getItems().setAll(concesionario.getListaClientes());
     }
 
     @FXML

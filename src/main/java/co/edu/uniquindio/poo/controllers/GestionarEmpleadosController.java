@@ -25,6 +25,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -190,6 +191,7 @@ public class GestionarEmpleadosController {
         }
         concesionario.buscarEmpleado(empleadoSeleccionado.getId()).setActivo(false);
         InicioSesionController.mostrarAlertaInfo("Bloqueado con exito");
+        cargarTabla();
     }
 
     @FXML
@@ -206,6 +208,7 @@ public class GestionarEmpleadosController {
         }
         concesionario.buscarEmpleado(empleadoSeleccionado.getId()).setActivo(true);
         InicioSesionController.mostrarAlertaInfo("Desbloqueado con exito");
+        cargarTabla();
     }
 
     @FXML
@@ -223,9 +226,16 @@ public class GestionarEmpleadosController {
         cargarTabla();
     }
 
+    
     @FXML
     void initialize() {
         cargarTabla();
+        estadoColumna.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        emailColumna.setCellValueFactory(new PropertyValueFactory<>("email"));
+        usuarioColumna.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        iDColumna.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        
         assert estadoColumna != null
                 : "fx:id=\"estadoColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
         assert busquedaCampo != null

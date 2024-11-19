@@ -190,6 +190,7 @@ public class RegistrarVehiculoController {
     }
 
     private void mostrarPanelPorVehiculo(ActionEvent event) {
+        desactivarTodosLosPaneles();
         String tipoVehiculo = tipoVehiculoCombo.getValue();
 
         switch (tipoVehiculo) {
@@ -215,6 +216,17 @@ public class RegistrarVehiculoController {
                 busPanel.setVisible(true);
                 break;
         }
+    }
+
+    private void desactivarTodosLosPaneles() {
+        // Desactivamos todos los paneles
+        sedanPanel.setVisible(false);
+        SUVPanel.setVisible(false);
+        deportivoPanel.setVisible(false);
+        pickUpPanel.setVisible(false);
+        camionPanel.setVisible(false);
+        VanPanel.setVisible(false);
+        busPanel.setVisible(false);
     }
 
     @FXML

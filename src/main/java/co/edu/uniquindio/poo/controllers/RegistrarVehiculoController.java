@@ -1,16 +1,29 @@
 package co.edu.uniquindio.poo.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.app.App;
+import co.edu.uniquindio.poo.controllers.Sesion.Rol;
+import co.edu.uniquindio.poo.model.Bus;
+import co.edu.uniquindio.poo.model.Deportivo;
+import co.edu.uniquindio.poo.model.PickUp;
+import co.edu.uniquindio.poo.model.SUV;
+import co.edu.uniquindio.poo.model.Sedan;
+import co.edu.uniquindio.poo.model.Van;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class RegistrarVehiculoController {
 
@@ -219,7 +232,6 @@ public class RegistrarVehiculoController {
     }
 
     private void desactivarTodosLosPaneles() {
-        // Desactivamos todos los paneles
         sedanPanel.setVisible(false);
         SUVPanel.setVisible(false);
         deportivoPanel.setVisible(false);
@@ -231,12 +243,144 @@ public class RegistrarVehiculoController {
 
     @FXML
     void añadirAccion(ActionEvent event) {
+        String tipoVehiculo = tipoVehiculoCombo.getValue();
 
+        String marca = marcaCampo.getText();
+        String modelo = modeloCampo.getText();
+        double precio = Double.parseDouble(precioCampo.getText());
+        double precioDiaAlquiler = Double.parseDouble(precioDiaAlquilerCampo.getText());
+        String matricula = matriculaCampo.getText();
+        String cilindraje = cilindrajeCampo.getText();
+        String tipoCombustible = tipoCombustibleCombo.getValue();
+        transmisionCombo
+
+        if (tipoVehiculo != null) {
+            if (tipoVehiculo.equals("Deportivo")) {
+                double tiempo100KmH = Double.parseDouble(TiempoAlcanzar100KmHDeportivoCampo.getText());
+                double caballosFuerza = Double.parseDouble(NumcaballosFuerzaDeportivoCampo.getText());
+                Deportivo deportivo = new Deportivo(marca, modelo, matricula, precio, tipoCombustible, tiempo100KmH, caballosFuerza);
+
+            } else {
+                //carros
+                int numPuertas = Integer.parseInt(NumPuertasCarroCampo.getText());
+                int numPasajeros = Integer.parseInt(NumPasajerosCarroCampo.getText());
+                double capacidadDelMaletero = Double.parseDouble(capacidadDelMaletero.getText());
+                
+                boolean tieneAireAcondicionado = TieneAireAcondicionadoCarroCombo.getValue().equals("Sí");
+                boolean tieneSensoresColision = false;
+                boolean tieneSensorTraficoCruzado = false;
+                boolean tieneVelocidadCrucero = false;
+                boolean tieneAsistenciaCarril = false;
+                boolean es4x4 = false;
+
+                // Dependiendo del tipo de vehículo, asignamos atributos específicos
+                if (tipoVehiculo.equals("Sedán")) {
+                    // Atributos específicos para un sedán
+                    tieneSensoresColision = TieneSensoresColisionSedanCombo.getValue().equals("Sí");
+                    tieneSensorTraficoCruzado = TieneSensorTraficoCruzadoSedanCombo.getValue().equals("Sí");
+                    tieneVelocidadCrucero = TieneVelocidadCruceroSedanCombo.getValue().equals("Sí");
+                    tieneAsistenciaCarril = TieneAsistenciaPermanenciaCarrilSedanCombo.getValue().equals("Sí");
+
+                    // Crear el objeto Sedan
+                    Sedan sedan = new Sedan(marca, modelo, matricula, precio, tipoCombustible, numPuertas, numPasajeros,
+                            tieneAireAcondicionado, tieneSensoresColision, tieneSensorTraficoCruzado,
+                            tieneVelocidadCrucero, tieneAsistenciaCarril);
+                    // Añadir el sedán al sistema
+                    System.out.println("Vehículo sedán añadido: " + sedan);
+
+                } else if (tipoVehiculo.equals("SUV")) {
+                    // Atributos específicos para un SUV
+                    tieneSensoresColision = TieneSensoresColisionSUVCombo.getValue().equals("Sí");
+                    tieneSensorTraficoCruzado = TieneSensorTraficoCruzadoSUVCombo.getValue().equals("Sí");
+                    tieneVelocidadCrucero = TieneVelocidadCruceroSUVCombo.getValue().equals("Sí");
+                    tieneAsistenciaCarril = TieneAsistenciaPermanenciaCarrilSUVCombo.getValue().equals("Sí");
+                    es4x4 = Es4x4SUVCombo.getValue().equals("Sí");
+
+                    // Crear el objeto SUV
+                    SUV suv = new SUV(marca, modelo, matricula, precio, tipoCombustible, numPuertas, numPasajeros,
+                            tieneAireAcondicionado, tieneSensoresColision, tieneSensorTraficoCruzado,
+                            tieneVelocidadCrucero, tieneAsistenciaCarril, es4x4);
+                    // Añadir el SUV al sistema
+                    System.out.println("Vehículo SUV añadido: " + suv);
+
+                } else if (tipoVehiculo.equals("PickUp")) {
+                    // Atributos específicos para una PickUp
+                    double capacidadCarga = Double.parseDouble(CapacidadCargaPickUpCampo.getText());
+                    es4x4 = Es4x4PickUpCombo.getValue().equals("Sí");
+
+                    // Crear el objeto PickUp
+                    PickUp pickUp = new PickUp(marca, modelo, matricula, precio, tipoCombustible, capacidadCarga,
+                            numPasajeros,
+                            tieneAireAcondicionado, es4x4);
+                    // Añadir la PickUp al sistema
+                    System.out.println("Vehículo PickUp añadido: " + pickUp);
+
+                } else if (tipoVehiculo.equals("Camión")) {
+                    // Atributos específicos para un camión
+                    int numEjes = Integer.parseInt(NumEjesBusCampo.getText());
+                    boolean tieneAbs = TieneAbsCarroCombo.getValue().equals("Sí");
+                    double tiempoCarga = Double.parseDouble(tiempoCargaCampo.getText());
+
+                    // Crear el objeto Camión
+                    Camion camion = new Camion(marca, modelo, matricula, precio, tipoCombustible, numEjes, tieneAbs,
+                            tiempoCarga);
+                    // Añadir el camión al sistema
+                    System.out.println("Vehículo camión añadido: " + camion);
+
+                } else if (tipoVehiculo.equals("Van")) {
+                    // Atributos específicos para una Van
+                    boolean esLinda = EsLindaVanCombo.getValue().equals("Sí");
+
+                    // Crear el objeto Van
+                    Van van = new Van(marca, modelo, matricula, precio, tipoCombustible, esLinda);
+                    // Añadir la Van al sistema
+                    System.out.println("Vehículo Van añadido: " + van);
+
+                } else if (tipoVehiculo.equals("Bus")) {
+                    // Atributos específicos para un bus
+                    int numSalidasEmergencia = Integer.parseInt(NumSalidasEmergenciaBusCampo.getText());
+                    numPasajeros = Integer.parseInt(NumPasajerosCarroCampo.getText());
+
+                    // Crear el objeto Bus
+                    Bus bus = new Bus(marca, modelo, matricula, precio, tipoCombustible, numSalidasEmergencia,
+                            numPasajeros);
+                    // Añadir el bus al sistema
+                    System.out.println("Vehículo bus añadido: " + bus);
+                }
+            }
+        } else {
+            // Si no se seleccionó un tipo de vehículo
+            System.out.println("Por favor, seleccione un tipo de vehículo.");
+        }
     }
 
     @FXML
     void atrasAccion(ActionEvent event) {
-
+        if (Rol.ADMIN.equals(Sesion.getRol())) {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = App.getStage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Vista Administrador");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = App.getStage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Vista Empleado");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

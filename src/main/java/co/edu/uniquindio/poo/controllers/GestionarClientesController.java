@@ -179,6 +179,7 @@ public class GestionarClientesController {
 
     @FXML
     void initialize() {
+        cargarTablaClientes();
         iDColumna.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         contactoColumna.setCellValueFactory(new PropertyValueFactory<>("contacto"));

@@ -105,7 +105,8 @@ public class GestionarEmpleadosController {
 
         if (RegistrarAdministradorController.validarTextFields(EmpleadoCedulaCampo, EmpleadoContraseñaCampo,
                 EmpleadoEmailCampo, EmpleadoNombreCampo, EmpleadoUsuarioCampo)) {
-            Administrador empleado = new Administrador(EmpleadoCedulaCampo.getText(), EmpleadoNombreCampo.getText(), true,
+            Administrador empleado = new Administrador(EmpleadoCedulaCampo.getText(), EmpleadoNombreCampo.getText(),
+                    true,
                     EmpleadoEmailCampo.getText(), EmpleadoUsuarioCampo.getText(), EmpleadoContraseñaCampo.getText());
             concesionario.añadirEmpleado(empleado);
             Alert alerta = new Alert(AlertType.INFORMATION);
@@ -119,7 +120,6 @@ public class GestionarEmpleadosController {
         cargarTabla();
 
     }
-    
 
     @FXML
     void atrasAccion(ActionEvent event) {
@@ -257,8 +257,6 @@ public class GestionarEmpleadosController {
         cargarTabla();
     }
 
-
-
     @FXML
     void initialize() {
         cargarTabla();
@@ -280,7 +278,8 @@ public class GestionarEmpleadosController {
                 }
             };
         });
-        assert recargarBoton != null : "fx:id=\"recargarBoton\" was not injected: check your FXML file 'reportesView.fxml'.";
+        assert recargarBoton != null
+                : "fx:id=\"recargarBoton\" was not injected: check your FXML file 'reportesView.fxml'.";
 
         assert estadoColumna != null
                 : "fx:id=\"estadoColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";

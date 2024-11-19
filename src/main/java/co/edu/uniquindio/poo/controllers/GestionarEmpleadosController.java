@@ -38,7 +38,7 @@ public class GestionarEmpleadosController {
     private URL location;
 
     @FXML
-    private TableColumn<?, ?> estadoColumna;
+    private TableColumn<Empleado, String> estadoColumna;
 
     @FXML
     private TextField busquedaCampo;
@@ -47,16 +47,16 @@ public class GestionarEmpleadosController {
     private Button añadirEmpleadoBoton;
 
     @FXML
-    private TableColumn<?, ?> emailColumna;
+    private TableColumn<Empleado, String> emailColumna;
 
     @FXML
     private Pagination paginacionTabla;
 
     @FXML
-    private TableColumn<?, ?> iDColumna;
+    private TableColumn<Empleado, String> iDColumna;
 
     @FXML
-    private ComboBox<?> atributoABuscarCombo;
+    private ComboBox<String> atributoABuscarCombo;
 
     @FXML
     private Button eliminarBoton;
@@ -68,7 +68,7 @@ public class GestionarEmpleadosController {
     private TextField EmpleadoEmailCampo;
 
     @FXML
-    private TableColumn<?, ?> usuarioColumna;
+    private TableColumn<Empleado, String> usuarioColumna;
 
     @FXML
     private Button desbloquearBoton;
@@ -80,7 +80,7 @@ public class GestionarEmpleadosController {
     private TextField EmpleadoUsuarioCampo;
 
     @FXML
-    private TableColumn<?, ?> nombreColumna;
+    private TableColumn<Empleado, String> nombreColumna;
 
     @FXML
     private Button buscarBoton;
@@ -96,87 +96,88 @@ public class GestionarEmpleadosController {
 
     @FXML
     private Button atrasButton;
-    
+
     @FXML
     void atrasAccion(ActionEvent event) {
 
         if (Rol.ADMIN.equals(Sesion.getRol())) {
             FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = App.getStage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Vista Administrador");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    getClass().getResource("/co/edu/uniquindio/poo/administradorView.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = App.getStage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Vista Administrador");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
-                try {
-                    Parent root = loader.load();
-                    Stage stage = App.getStage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Vista Empleado");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    getClass().getResource("/co/edu/uniquindio/poo/empleadoView.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = App.getStage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Vista Empleado");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
-    private void cargarTabla(){
-        ObservableList<Empleado> empleadosObservable = FXCollections.observableArrayList(concesionario.getListaEmpleados());
-        empleadosTabla.getItems().setAll(empleadosObservable);
+    private void cargarTabla() {
+        empleadosTabla.getItems().setAll(concesionario.getListaEmpleados());
     }
 
-    private void limpiarCampos(){
-        EmpleadoCedulaCampo.clear(); 
-        EmpleadoContraseñaCampo.clear(); 
+    private void limpiarCampos() {
+        EmpleadoCedulaCampo.clear();
+        EmpleadoContraseñaCampo.clear();
         EmpleadoEmailCampo.clear();
         EmpleadoNombreCampo.clear();
         EmpleadoUsuarioCampo.clear();
     }
+
     @FXML
     void añadirEmpleadoAccion(ActionEvent event) {
 
-        if (RegistrarAdministradorController.validarTextFields(EmpleadoCedulaCampo, EmpleadoContraseñaCampo, EmpleadoEmailCampo, EmpleadoNombreCampo, EmpleadoUsuarioCampo)) {
-            Empleado empleado = new Empleado(EmpleadoCedulaCampo.getText(), EmpleadoNombreCampo.getText(), true, EmpleadoEmailCampo.getText(), EmpleadoUsuarioCampo.getText(), EmpleadoContraseñaCampo.getText());
+        if (RegistrarAdministradorController.validarTextFields(EmpleadoCedulaCampo, EmpleadoContraseñaCampo,
+                EmpleadoEmailCampo, EmpleadoNombreCampo, EmpleadoUsuarioCampo)) {
+            Empleado empleado = new Empleado(EmpleadoCedulaCampo.getText(), EmpleadoNombreCampo.getText(), true,
+                    EmpleadoEmailCampo.getText(), EmpleadoUsuarioCampo.getText(), EmpleadoContraseñaCampo.getText());
             concesionario.añadirEmpleado(empleado);
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setTitle("Alerta");
             alerta.setContentText("Creado con exito");
             alerta.showAndWait();
-        }else{
+        } else {
             InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
-    }
-    limpiarCampos();
-    cargarTabla();
+        }
+        limpiarCampos();
+        cargarTabla();
 
-        
     }
 
     @FXML
     void buscarAccion(ActionEvent event) {
-        if (busquedaCampo!=null) {
+        if (busquedaCampo != null) {
             String busqueda = busquedaCampo.getText();
             LinkedList<Empleado> resultados = new LinkedList<>();
 
-        for (Empleado cliente : concesionario.getListaEmpleados()) {
-            if (cliente.getId().equalsIgnoreCase(busqueda) ||
-                    cliente.getNombre().equalsIgnoreCase(busqueda)) {
-                resultados.add(cliente);
+            for (Empleado cliente : concesionario.getListaEmpleados()) {
+                if (cliente.getId().equalsIgnoreCase(busqueda) ||
+                        cliente.getNombre().equalsIgnoreCase(busqueda)) {
+                    resultados.add(cliente);
+                }
             }
-        }
 
-        if (resultados.isEmpty()) {
-            InicioSesionController.mostrarAlertaInfo("No se encontró");
-        } else {
-            empleadosTabla.getItems().setAll(resultados);
-        }
+            if (resultados.isEmpty()) {
+                InicioSesionController.mostrarAlertaInfo("No se encontró");
+            } else {
+                empleadosTabla.getItems().setAll(resultados);
+            }
         }
     }
 
@@ -198,7 +199,8 @@ public class GestionarEmpleadosController {
         if (empleadoSeleccionado == null) {
             InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
             return;
-        }if (empleadoSeleccionado.isActivo()) {
+        }
+        if (empleadoSeleccionado.isActivo()) {
             InicioSesionController.mostrarAlertaInfo("Ya está activo");
             return;
         }
@@ -209,7 +211,7 @@ public class GestionarEmpleadosController {
     @FXML
     void eliminarAccion(ActionEvent event) {
 
-       Empleado empleadoSeleccionado = (Empleado) empleadosTabla.getSelectionModel().getSelectedItem();
+        Empleado empleadoSeleccionado = (Empleado) empleadosTabla.getSelectionModel().getSelectedItem();
 
         if (empleadoSeleccionado == null) {
             InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un empleado");
@@ -223,25 +225,45 @@ public class GestionarEmpleadosController {
 
     @FXML
     void initialize() {
-        assert estadoColumna != null : "fx:id=\"estadoColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert busquedaCampo != null : "fx:id=\"busquedaCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert añadirEmpleadoBoton != null : "fx:id=\"añadirEmpleadoBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert emailColumna != null : "fx:id=\"emailColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert paginacionTabla != null : "fx:id=\"paginacionTabla\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert iDColumna != null : "fx:id=\"iDColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert atributoABuscarCombo != null : "fx:id=\"atributoABuscarCombo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert eliminarBoton != null : "fx:id=\"eliminarBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert EmpleadoCedulaCampo != null : "fx:id=\"EmpleadoCedulaCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert EmpleadoEmailCampo != null : "fx:id=\"EmpleadoEmailCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert usuarioColumna != null : "fx:id=\"usuarioColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert desbloquearBoton != null : "fx:id=\"desbloquearBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert EmpleadoNombreCampo != null : "fx:id=\"EmpleadoNombreCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert EmpleadoUsuarioCampo != null : "fx:id=\"EmpleadoUsuarioCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert nombreColumna != null : "fx:id=\"nombreColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert buscarBoton != null : "fx:id=\"buscarBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert empleadosTabla != null : "fx:id=\"empleadosTabla\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert EmpleadoContraseñaCampo != null : "fx:id=\"EmpleadoContraseñaCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
-        assert bloquearBoton != null : "fx:id=\"bloquearBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        cargarTabla();
+        assert estadoColumna != null
+                : "fx:id=\"estadoColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert busquedaCampo != null
+                : "fx:id=\"busquedaCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert añadirEmpleadoBoton != null
+                : "fx:id=\"añadirEmpleadoBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert emailColumna != null
+                : "fx:id=\"emailColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert paginacionTabla != null
+                : "fx:id=\"paginacionTabla\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert iDColumna != null
+                : "fx:id=\"iDColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert atributoABuscarCombo != null
+                : "fx:id=\"atributoABuscarCombo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert eliminarBoton != null
+                : "fx:id=\"eliminarBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert EmpleadoCedulaCampo != null
+                : "fx:id=\"EmpleadoCedulaCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert EmpleadoEmailCampo != null
+                : "fx:id=\"EmpleadoEmailCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert usuarioColumna != null
+                : "fx:id=\"usuarioColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert desbloquearBoton != null
+                : "fx:id=\"desbloquearBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert EmpleadoNombreCampo != null
+                : "fx:id=\"EmpleadoNombreCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert EmpleadoUsuarioCampo != null
+                : "fx:id=\"EmpleadoUsuarioCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert nombreColumna != null
+                : "fx:id=\"nombreColumna\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert buscarBoton != null
+                : "fx:id=\"buscarBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert empleadosTabla != null
+                : "fx:id=\"empleadosTabla\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert EmpleadoContraseñaCampo != null
+                : "fx:id=\"EmpleadoContraseñaCampo\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
+        assert bloquearBoton != null
+                : "fx:id=\"bloquearBoton\" was not injected: check your FXML file 'gestionarEmpleadosView.fxml'.";
 
     }
 }

@@ -106,6 +106,30 @@ public class GestionarClientesController {
         vehiculosTabla.getItems().setAll(concesionario.getListaClientes());
     }
 
+    private void limpiarCampos() {
+        clienteNombreCampo.clear();
+        clienteCedulaCampo.clear();
+        clienteContactoCampo.clear();
+    }
+
+    @FXML
+    void añadirClienteAccion(ActionEvent event) {
+        if (RegistrarAdministradorController.validarTextFields(clienteCedulaCampo, clienteContactoCampo,
+                clienteNombreCampo)) {
+            Cliente cliente = new Cliente(clienteCedulaCampo.getText(), clienteNombreCampo.getText(),
+                    clienteContactoCampo.getText());
+            concesionario.añadirCliente(cliente);
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setTitle("Alerta");
+            alerta.setContentText("Creado con exito");
+            alerta.showAndWait();
+        } else {
+            InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
+        }
+        limpiarCampos();
+        cargarTablaClientes();
+    }
+
     @FXML
     void buscarAccion(ActionEvent event) {
         String textoBusqueda = busquedaNombreOrIDCampo.getText().toLowerCase().trim();
@@ -144,37 +168,13 @@ public class GestionarClientesController {
         Cliente clienteSeleccionado = (Cliente) vehiculosTabla.getSelectionModel().getSelectedItem();
 
         if (clienteSeleccionado == null) {
-            System.out.println("Por favor, selecciona un cliente de la tabla.");
+            InicioSesionController.mostrarAlerta("Alerta", "Debe seleccionar un cliente");
             return;
         }
 
         Concesionario.getInstancia().getListaClientes().remove(clienteSeleccionado);
         System.out.println("Cliente eliminado exitosamente.");
         cargarTablaClientes();
-    }
-
-    @FXML
-    void añadirClienteAccion(ActionEvent event) {
-        if (RegistrarAdministradorController.validarTextFields(clienteCedulaCampo, clienteContactoCampo,
-                clienteNombreCampo)) {
-            Cliente cliente = new Cliente(clienteCedulaCampo.getText(), clienteNombreCampo.getText(),
-                    clienteContactoCampo.getText());
-            concesionario.añadirCliente(cliente);
-            Alert alerta = new Alert(AlertType.INFORMATION);
-            alerta.setTitle("Alerta");
-            alerta.setContentText("Creado con exito");
-            alerta.showAndWait();
-        } else {
-            InicioSesionController.mostrarAlerta("Alerta", "Llene todos los campos");
-        }
-        limpiarCampos();
-        cargarTablaClientes();
-    }
-
-    private void limpiarCampos() {
-        clienteNombreCampo.clear();
-        clienteCedulaCampo.clear();
-        clienteContactoCampo.clear();
     }
 
     @FXML
